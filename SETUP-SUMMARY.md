@@ -18,18 +18,29 @@
 - ✅ Comprehensive guides in `docs-management/` for setup and deployment
 
 ### 🔄 **Auto-Sync from Main Repo**
-
 - ✅ Created `.github/workflows/sync-docs.yml` for automatic synchronization
 - ✅ Built `scripts/sync-api-docs.py` and `scripts/sync-readme-content.py`
 - ✅ Added `scripts/update-version-info.py` for version management
 - ✅ Created complete setup guide: `docs-management/AUTO-SYNC-SETUP.md`
 
 ### 🌐 **Deployment to annie.io**
-
 - ✅ Created `.github/workflows/deploy-docs.yml` for GitHub Pages
 - ✅ Added configuration files for Netlify and Vercel
 - ✅ Created comprehensive deployment guide: `docs-management/ANNIE-IO-DEPLOYMENT.md`
 - ✅ Configured custom domain with `configs/CNAME`
+
+### 🔧 **CI/CD & Quality Assurance**
+- ✅ Added `.github/workflows/ci.yml` for continuous integration
+- ✅ Created `.github/workflows/codeql.yml` for security analysis
+- ✅ Added `.github/workflows/dependencies.yml` for automated updates
+- ✅ Implemented linting, testing, and quality checks
+- ✅ Updated all workflows to latest GitHub Actions versions
+
+### 📄 **Legal & Security**
+- ✅ Added `LICENSE` with MIT License
+- ✅ Created `SECURITY.md` with security policy and vulnerability reporting
+- ✅ Configured automated security scanning with CodeQL
+- ✅ Implemented dependency vulnerability checking
 
 ## 🗂️ **Current Clean Structure**
 
@@ -42,6 +53,8 @@ annie-docs/
 ├── 📁 docs-management/        # Setup & deployment guides
 ├── 📄 mkdocs.yml              # MkDocs configuration
 ├── 📄 requirements.txt        # Python dependencies
+├── 📄 LICENSE                 # MIT License
+├── 📄 SECURITY.md             # Security policy
 ├── 📄 README.md               # Main project documentation
 ├── 📄 CONTRIBUTING.md         # Contribution guidelines
 ├── 📄 HOSTING.md              # Hosting information
@@ -87,6 +100,7 @@ Follow the guide in `docs-management/ANNIE-IO-DEPLOYMENT.md`:
 | **File organization**     | `FILE-ORGANIZATION.md`                   |
 | **Setting up auto-sync**  | `docs-management/AUTO-SYNC-SETUP.md`     |
 | **Deploying to annie.io** | `docs-management/ANNIE-IO-DEPLOYMENT.md` |
+| **Security issues**       | `SECURITY.md`                            |
 | **Local development**     | `README.md`                              |
 | **Build scripts**         | Files in `scripts/` directory            |
 

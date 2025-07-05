@@ -29,14 +29,15 @@ annie-docs/
 │   └── CNAME                 # Custom domain configuration
 ├── 📁 .github/workflows/     # GitHub Actions automation
 │   ├── deploy-docs.yml       # Auto-deployment workflow
-│   └── sync-docs.yml         # Auto-sync from main repo
+│   ├── sync-docs.yml         # Auto-sync from main repo
+│   ├── ci.yml                # Continuous integration
+│   ├── codeql.yml            # Security analysis
+│   └── dependencies.yml     # Dependency updates
 ├── 📁 docs-management/       # Project management documents
 │   ├── AUTO-SYNC-SETUP.md    # Auto-sync setup guide
 │   ├── ANNIE-IO-DEPLOYMENT.md # Deploy to annie.io guide
 │   ├── SETUP.md              # Initial setup guide
-│   ├── SETUP-COMPLETE.md     # Setup completion status
-│   ├── DOMAIN-SETUP.md       # Domain configuration
-│   └── REBRANDING-COMPLETE.md # Rebranding status
+│   └── DOMAIN-SETUP.md       # Domain configuration
 ├── 📁 site/                  # Generated static site (MkDocs output)
 ├── 📁 venv/                  # Python virtual environment
 ├── 📄 mkdocs.yml             # MkDocs configuration
@@ -45,6 +46,8 @@ annie-docs/
 ├── 📄 CONTRIBUTING.md        # Contribution guidelines
 ├── 📄 HOSTING.md             # Hosting setup guide
 ├── 📄 SETUP-SUMMARY.md       # Complete setup summary
+├── 📄 LICENSE                # MIT License
+├── 📄 SECURITY.md            # Security policy
 └── 📄 FILE-ORGANIZATION.md   # This file
 ```
 
@@ -80,6 +83,15 @@ annie-docs/
 ### Automation (`.github/workflows/`)
 
 - **`deploy-docs.yml`** - Automatic deployment on git push
+- **`sync-docs.yml`** - Auto-sync documentation from main Annie repository
+- **`ci.yml`** - Continuous integration (linting, testing, quality checks)
+- **`codeql.yml`** - Security analysis and vulnerability scanning
+- **`dependencies.yml`** - Automated dependency updates
+
+### Legal & Security
+
+- **`LICENSE`** - MIT License for the documentation repository
+- **`SECURITY.md`** - Security policy and vulnerability reporting guidelines
 
 ## 🚀 Quick Commands
 

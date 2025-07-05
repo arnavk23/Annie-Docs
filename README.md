@@ -2,7 +2,10 @@
 
 [![Documentation](https://img.shields.io/badge/docs-annie.io-blue)](https://annie.io)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/Programmers-Paradise/Annie-Docs/deploy-docs.yml?branch=main)](https://github.com/Programmers-Paradise/Annie-Docs/actions)
+[![CI Status](https://img.shields.io/github/actions/workflow/status/Programmers-Paradise/Annie-Docs/ci.yml?branch=main&label=CI)](https://github.com/Programmers-Paradise/Annie-Docs/actions)
+[![CodeQL](https://img.shields.io/github/actions/workflow/status/Programmers-Paradise/Annie-Docs/codeql.yml?branch=main&label=CodeQL)](https://github.com/Programmers-Paradise/Annie-Docs/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Security](https://img.shields.io/badge/Security-Policy-red.svg)](SECURITY.md)
 [![Main Repo](https://img.shields.io/badge/source-Annie-green)](https://github.com/Programmers-Paradise/Annie)
 
 > **Official documentation for Annie - Blazingly fast Approximate Nearest Neighbors in Rust** 🦀⚡
@@ -50,13 +53,19 @@ annie-docs/
 │   └── CNAME                 # Custom domain config
 ├── 📁 .github/workflows/     # CI/CD automation
 │   ├── deploy-docs.yml       # Auto-deployment
-│   └── sync-docs.yml         # Auto-sync from main repo
+│   ├── sync-docs.yml         # Auto-sync from main repo
+│   ├── ci.yml                # Continuous integration
+│   ├── codeql.yml            # Security analysis
+│   └── dependencies.yml     # Dependency updates
 ├── 📁 docs-management/       # Setup & deployment guides
 │   ├── AUTO-SYNC-SETUP.md    # How to set up auto-sync
 │   ├── ANNIE-IO-DEPLOYMENT.md # Deploy to annie.io guide
-│   └── ...                   # Project status files
+│   ├── SETUP.md              # Initial setup guide
+│   └── DOMAIN-SETUP.md       # Domain configuration
 ├── 📄 mkdocs.yml             # MkDocs configuration
 ├── 📄 requirements.txt       # Python dependencies
+├── 📄 LICENSE                # MIT License
+├── 📄 SECURITY.md            # Security policy
 └── 📄 README.md              # This file
 ```
 
@@ -193,6 +202,7 @@ This documentation repository is licensed under the **MIT License**.
 | Issue Type               | Where to Go                                                                          |
 | ------------------------ | ------------------------------------------------------------------------------------ |
 | **Documentation bugs**   | [Create Issue](https://github.com/Programmers-Paradise/Annie-Docs/issues)            |
+| **Security vulnerabilities** | [Security Policy](SECURITY.md)                                                    |
 | **Usage questions**      | [GitHub Discussions](https://github.com/Programmers-Paradise/Annie-Docs/discussions) |
 | **Annie library issues** | [Main Repository](https://github.com/Programmers-Paradise/Annie/issues)              |
 

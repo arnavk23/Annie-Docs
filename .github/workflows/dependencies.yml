@@ -1,0 +1,71 @@
+name: Dependency Updates
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'  # Weekly on Mondays at 6 AM
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-dependencies:
+    name: Update Python Dependencies
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        
+    - name: Install pip-tools
+      run: |
+        python -m pip install --upgrade pip
+        pip install pip-tools
+        
+    - name: Update requirements
+      run: |
+        # Create requirements.in if it doesn't exist
+        if [ ! -f "requirements.in" ]; then
+          cp requirements.txt requirements.in
+        fi
+        pip-compile --upgrade requirements.in
+        
+    - name: Check for updates
+      id: check-updates
+      run: |
+        if git diff --quiet requirements.txt; then
+          echo "has_updates=false" >> $GITHUB_OUTPUT
+        else
+          echo "has_updates=true" >> $GITHUB_OUTPUT
+        fi
+        
+    - name: Create Pull Request
+      if: steps.check-updates.outputs.has_updates == 'true'
+      uses: peter-evans/create-pull-request@v5
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        commit-message: "deps: update Python dependencies"
+        title: "🔄 Update Python Dependencies"
+        body: |
+          ## 📦 Dependency Updates
+          
+          This PR updates Python dependencies to their latest versions.
+          
+          ### Changes
+          - Updated `requirements.txt` with latest compatible versions
+          
+          ### Verification
+          - [ ] All tests pass
+          - [ ] Documentation builds successfully
+          - [ ] No breaking changes identified
+          
+          ---
+          *This PR was created automatically by the dependency update workflow.*
+        branch: deps/update-python-dependencies
+        delete-branch: true

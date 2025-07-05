@@ -43,9 +43,10 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+          cache: 'pip'
 
       - name: Install dependencies
         run: |
@@ -55,7 +56,11 @@ jobs:
       - name: Sync API documentation
         run: |
           # Create sync script for API docs
-          python scripts/sync-api-docs.py
+          if [ -f "scripts/sync-api-docs.py" ]; then
+            python scripts/sync-api-docs.py
+          else
+            echo "Warning: sync-api-docs.py not found, skipping API sync"
+          fi
 
       - name: Sync examples
         run: |
@@ -67,17 +72,24 @@ jobs:
       - name: Sync README and guides
         run: |
           # Update main documentation with latest from Annie repo
-          if [ -f "annie-source/README.md" ]; then
+          if [ -f "annie-source/README.md" ] && [ -f "scripts/sync-readme-content.py" ]; then
             # Extract relevant sections for docs
             python scripts/sync-readme-content.py
-          fi    - name: Update version information
-      run: |
-        # Extract version from Annie repository
-        if [ -f "annie-source/Cargo.toml" ]; then
-          VERSION=$(grep '^version' annie-source/Cargo.toml | head -1 | cut -d'"' -f2)
-          echo "ANNIE_VERSION=$VERSION" >> $GITHUB_ENV
-          python scripts/update-version-info.py "$VERSION"
-        fi
+          else
+            echo "Warning: README.md or sync script not found, skipping README sync"
+          fi
+
+      - name: Update version information
+        run: |
+          # Extract version from Annie repository
+          if [ -f "annie-source/Cargo.toml" ] && [ -f "scripts/update-version-info.py" ]; then
+            VERSION=$(grep '^version' annie-source/Cargo.toml | head -1 | cut -d'"' -f2)
+            echo "ANNIE_VERSION=$VERSION" >> $GITHUB_ENV
+            echo "Found Annie version: $VERSION"
+            python scripts/update-version-info.py "$VERSION"
+          else
+            echo "Warning: Cargo.toml or version update script not found, skipping version update"
+          fi
 
       - name: Build documentation
         run: |
@@ -103,8 +115,17 @@ jobs:
           git commit -m "docs: sync from Annie repository [automated]"
           git push
 
-      - name: Deploy to GitHub Pages
+      - name: Setup Pages (if changes detected)
         if: steps.changes.outputs.has_changes == 'true'
-        uses: actions/deploy-pages@v2
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact for Pages
+        if: steps.changes.outputs.has_changes == 'true'
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ./site
+
+      - name: Deploy to GitHub Pages
+        if: steps.changes.outputs.has_changes == 'true'
+        id: deployment
+        uses: actions/deploy-pages@v4

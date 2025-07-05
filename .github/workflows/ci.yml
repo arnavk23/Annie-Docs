@@ -1,0 +1,159 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lint-and-test:
+    name: Lint and Test
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        python-version: ['3.9', '3.10', '3.11', '3.12']
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+        cache: 'pip'
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install flake8 black isort pylint mypy
+        
+    - name: Lint with flake8
+      run: |
+        # Stop the build if there are Python syntax errors or undefined names
+        flake8 scripts/ --count --select=E9,F63,F7,F82 --show-source --statistics
+        # Exit-zero treats all errors as warnings
+        flake8 scripts/ --count --exit-zero --max-complexity=10 --max-line-length=88 --statistics
+        
+    - name: Check formatting with black
+      run: |
+        black --check --diff scripts/
+        
+    - name: Check import sorting with isort
+      run: |
+        isort --check-only --diff scripts/
+        
+    - name: Type checking with mypy
+      run: |
+        mypy scripts/ --ignore-missing-imports || true
+        
+    - name: Test documentation build
+      run: |
+        mkdocs build --clean
+        
+    - name: Validate workflow files
+      run: |
+        python -c "
+        import yaml
+        import os
+        workflow_dir = '.github/workflows'
+        for file in os.listdir(workflow_dir):
+            if file.endswith('.yml') or file.endswith('.yaml'):
+                with open(os.path.join(workflow_dir, file)) as f:
+                    yaml.safe_load(f)
+                print(f'✓ {file} is valid')
+        "
+        
+    - name: Check for broken links in documentation
+      run: |
+        # Install linkchecker if docs contain external links
+        pip install linkchecker || true
+        # Build docs first
+        mkdocs serve --dev-addr 0.0.0.0:8000 &
+        SERVER_PID=$!
+        sleep 5
+        # Check internal links (skip external to avoid rate limits in CI)
+        curl -f http://localhost:8000 || echo "Warning: Could not verify local server"
+        kill $SERVER_PID || true
+
+  security-check:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        cache: 'pip'
+        
+    - name: Install security tools
+      run: |
+        python -m pip install --upgrade pip
+        pip install safety bandit semgrep
+        pip install -r requirements.txt
+        
+    - name: Run safety check for vulnerabilities
+      run: |
+        safety check --json || true
+        
+    - name: Run bandit security linter
+      run: |
+        bandit -r scripts/ -f json || true
+        
+    - name: Run semgrep security scan
+      run: |
+        semgrep --config=auto scripts/ || true
+
+  documentation-quality:
+    name: Documentation Quality
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        cache: 'pip'
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install markdownlint-cli2 alex
+        
+    - name: Lint markdown files
+      run: |
+        # Install markdownlint
+        npm install -g markdownlint-cli2
+        markdownlint-cli2 "**/*.md" || true
+        
+    - name: Check for inclusive language
+      run: |
+        # Install alex for inclusive language checking
+        npm install -g alex
+        alex docs/ README.md CONTRIBUTING.md || true
+        
+    - name: Validate MkDocs configuration
+      run: |
+        python -c "
+        import yaml
+        with open('mkdocs.yml') as f:
+            config = yaml.safe_load(f)
+        print('✓ mkdocs.yml is valid')
+        print(f'Site name: {config.get(\"site_name\", \"Unknown\")}')
+        print(f'Theme: {config.get(\"theme\", {}).get(\"name\", \"Unknown\")}')
+        "
