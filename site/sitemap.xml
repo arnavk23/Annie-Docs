@@ -1,39 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://annie.io/</loc>
+         <loc>https://annie-docs.netlify.app/</loc>
          <lastmod>2025-07-05</lastmod>
     </url>
     <url>
-         <loc>https://annie.io/concurrency/</loc>
+         <loc>https://annie-docs.netlify.app/concurrency/</loc>
          <lastmod>2025-07-05</lastmod>
     </url>
     <url>
-         <loc>https://annie.io/contributing/</loc>
+         <loc>https://annie-docs.netlify.app/contributing/</loc>
          <lastmod>2025-07-05</lastmod>
     </url>
     <url>
-         <loc>https://annie.io/examples/</loc>
+         <loc>https://annie-docs.netlify.app/examples/</loc>
          <lastmod>2025-07-05</lastmod>
     </url>
     <url>
-         <loc>https://annie.io/filtering/</loc>
+         <loc>https://annie-docs.netlify.app/filtering/</loc>
          <lastmod>2025-07-05</lastmod>
     </url>
     <url>
-         <loc>https://annie.io/hosting/</loc>
+         <loc>https://annie-docs.netlify.app/api/ann_index/</loc>
          <lastmod>2025-07-05</lastmod>
     </url>
     <url>
-         <loc>https://annie.io/api/ann_index/</loc>
+         <loc>https://annie-docs.netlify.app/api/hnsw_index/</loc>
          <lastmod>2025-07-05</lastmod>
     </url>
     <url>
-         <loc>https://annie.io/api/hnsw_index/</loc>
-         <lastmod>2025-07-05</lastmod>
-    </url>
-    <url>
-         <loc>https://annie.io/api/threadsafe_index/</loc>
+         <loc>https://annie-docs.netlify.app/api/threadsafe_index/</loc>
          <lastmod>2025-07-05</lastmod>
     </url>
 </urlset>
