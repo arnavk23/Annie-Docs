@@ -4,36 +4,49 @@ Blazingly fast Approximate Nearest Neighbors in Rust
 
 ## Installation
 
+
 ```bash
-pip install rust_annie
+# Stable release from PyPI:
+pip install rust-annie
+
+# Or install from source (requires Rust toolchain + maturin):
+git clone https://github.com/yourusername/rust_annie.git
+cd rust_annie
+pip install maturin
+maturin develop --release
 ```
 
 ## Basic Usage
+
 
 ```python
 import numpy as np
 from rust_annie import AnnIndex, Distance
 
-# Create index
-index = AnnIndex(128, Distance.EUCLIDEAN)
+# Create an 8-dim Euclidean index
+idx = AnnIndex(8, Distance.EUCLIDEAN)
 
-# Add data
-data = np.random.rand(1000, 128).astype(np.float32)
-ids = np.arange(1000, dtype=np.int64)
-index.add(data, ids)
+# Add 100 random vectors
+data = np.random.rand(100, 8).astype(np.float32)
+ids  = np.arange(100, dtype=np.int64)
+idx.add(data, ids)
 
-# Search
-query = np.random.rand(128).astype(np.float32)
-neighbor_ids, distances = index.search(query, k=5)
+# Query one vector
+labels, dists = idx.search(data[0], k=5)
+print("Nearest IDs:", labels)
+print("Distances :", dists)
 ```
 
 ## Key Features
 
-- Multiple distance metrics
-- CPU/GPU acceleration  
-- Thread-safe indexes
-- Filtered search
-- HNSW support
+
+- **Ultra-fast brute-force** k-NN search (Euclidean, Cosine, Manhattan, Chebyshev)  
+- **Batch** queries over multiple vectors  
+- **Thread-safe** wrapper with GIL release for true concurrency  
+- **Zero-copy** NumPy integration (via PyO3 & rust-numpy)  
+- **On-disk** persistence with bincode + serde  
+- **Multi-platform** wheels (manylinux, musllinux, Windows, macOS)  
+- **Automated CI** with correctness & performance checks
 
 ## Navigation
 
