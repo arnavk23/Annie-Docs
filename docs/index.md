@@ -6,6 +6,7 @@ Blazingly fast Approximate Nearest Neighbors in Rust
 
 
 
+
 ```bash
 # Stable release from PyPI:
 pip install rust-annie
@@ -18,6 +19,7 @@ maturin develop --release
 ```
 
 ## Basic Usage
+
 
 
 
@@ -40,6 +42,7 @@ print("Distances :", dists)
 ```
 
 ## Key Features
+
 
 
 
