@@ -1,27 +1,16 @@
-# Site settings
-title: Annie Documentation
-email: your-email@example.com
-description: "Official docs site for Annie"
-baseurl: "" # leave empty because we'll deploy at root
+# This site uses MkDocs for documentation generation
+# See mkdocs.yml for the actual configuration
+
+title: Annie.io
+description: "Blazingly fast Approximate Nearest Neighbors in Rust"
+baseurl: ""
 url: "https://annie.io"
 
-# Build settings
-theme: minima
-plugins:
-  - jekyll-feed
-# Exclude from processing.
-# The following items will not be processed, by default.
-# Any item listed under the `exclude:` key here will be automatically added to
-# the internal "default list".
-#
-# exclude:
-#   - .sass-cache/
-#   - .jekyll-cache/
-#   - gemfiles/
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules/
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+# Exclude MkDocs files from Jekyll processing
+exclude:
+  - mkdocs.yml
+  - docs/
+  - site/
+  - requirements.txt
+  - .gitignore
+  - README.md

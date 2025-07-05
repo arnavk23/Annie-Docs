@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://annie.io/hosting/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Hosting Guide - Annie.io</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Hosting Guide";
+        var mkdocs_page_input_path = "hosting.md";
+        var mkdocs_page_url = "/hosting/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Annie.io
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Reference</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../api/ann_index/">AnnIndex</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../api/hnsw_index/">PyHnswIndex</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../api/threadsafe_index/">ThreadSafeAnnIndex</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Features</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../concurrency/">Concurrency</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../filtering/">Filtered Search</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../examples/">Examples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../contributing/">Contributing</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Hosting Guide</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#quick-public-access-local-network">🚀 Quick Public Access (Local Network)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#option-1-network-access">Option 1: Network Access</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#option-2-temporary-public-url">Option 2: Temporary Public URL</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#free-hosting-services">🏠 Free Hosting Services</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#github-pages-recommended">GitHub Pages (Recommended)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#netlify">Netlify</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#vercel">Vercel</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#self-hosting">💻 Self-Hosting</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#simple-http-server">Simple HTTP Server</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#docker-container">Docker Container</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#cloud-hosting">☁️ Cloud Hosting</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#aws-s3-cloudfront">AWS S3 + CloudFront</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#google-cloud-storage">Google Cloud Storage</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#security-performance">🛡️ Security &amp; Performance</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#https-configuration">HTTPS Configuration</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#performance-optimization">Performance Optimization</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#monitoring-analytics">📊 Monitoring &amp; Analytics</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#google-analytics">Google Analytics</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#simple-analytics">Simple Analytics</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#continuous-deployment">🔧 Continuous Deployment</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#github-actions-included">GitHub Actions (Included)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#webhook-deployment">Webhook Deployment</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#mobile-optimization">📱 Mobile Optimization</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#seo-optimization">🔍 SEO Optimization</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#troubleshooting">❓ Troubleshooting</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#common-issues">Common Issues</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#getting-help">Getting Help</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Annie.io</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Hosting Guide</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/Programmers-Paradise/Annie/edit/master/docs/hosting.md">Edit on Programmers-Paradise/Annie</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="hosting-guide">🌐 Hosting Guide<a class="headerlink" href="#hosting-guide" title="Permanent link">&para;</a></h1>
+<p>This guide covers multiple ways to make your Annie documentation site publicly accessible.</p>
+<h2 id="quick-public-access-local-network">🚀 Quick Public Access (Local Network)<a class="headerlink" href="#quick-public-access-local-network" title="Permanent link">&para;</a></h2>
+<h3 id="option-1-network-access">Option 1: Network Access<a class="headerlink" href="#option-1-network-access" title="Permanent link">&para;</a></h3>
+<p>Share your documentation with others on the same network:</p>
+<pre class="codehilite"><code class="language-bash">./serve-public.sh
+</code></pre>
+
+<p>This makes your site accessible at:
+- <strong>Local</strong>: <code>http://localhost:8000</code>
+- <strong>Network</strong>: <code>http://YOUR-IP:8000</code> (shareable with others on your network)</p>
+<h3 id="option-2-temporary-public-url">Option 2: Temporary Public URL<a class="headerlink" href="#option-2-temporary-public-url" title="Permanent link">&para;</a></h3>
+<p>Create a temporary public URL using ngrok:</p>
+<pre class="codehilite"><code class="language-bash"># Install ngrok first (see instructions in script)
+./tunnel.sh
+</code></pre>
+
+<p>This creates a temporary public URL like <code>https://abc123.ngrok.io</code></p>
+<h2 id="free-hosting-services">🏠 Free Hosting Services<a class="headerlink" href="#free-hosting-services" title="Permanent link">&para;</a></h2>
+<h3 id="github-pages-recommended">GitHub Pages (Recommended)<a class="headerlink" href="#github-pages-recommended" title="Permanent link">&para;</a></h3>
+<p><strong>Automatic deployment</strong> - Push to trigger deployment:</p>
+<ol>
+<li><strong>Enable GitHub Pages</strong>:</li>
+<li>Go to repository Settings → Pages</li>
+<li>
+<p>Source: "GitHub Actions"</p>
+</li>
+<li>
+<p><strong>Push changes</strong>:
+   <code>bash
+   git add .
+   git commit -m "docs: update documentation"
+   git push origin main</code></p>
+</li>
+<li>
+<p><strong>Access</strong>: <code>https://YOUR-USERNAME.github.io/Annie-Docs/</code></p>
+</li>
+</ol>
+<p><strong>✅ Pros</strong>: Free, automatic builds, custom domains
+<strong>❌ Cons</strong>: GitHub dependency, public repos only (free tier)</p>
+<h3 id="netlify">Netlify<a class="headerlink" href="#netlify" title="Permanent link">&para;</a></h3>
+<p><strong>One-click deployment</strong>:</p>
+<ol>
+<li><strong>Connect Repository</strong>:</li>
+<li>Go to <a href="https://netlify.com">netlify.com</a></li>
+<li>
+<p>"New site from Git" → Connect your GitHub repo</p>
+</li>
+<li>
+<p><strong>Deploy Settings</strong> (auto-detected via <code>netlify.toml</code>):</p>
+</li>
+<li>Build command: <code>pip install -r requirements.txt &amp;&amp; mkdocs build</code></li>
+<li>
+<p>Publish directory: <code>site</code></p>
+</li>
+<li>
+<p><strong>Custom Domain</strong> (optional):</p>
+</li>
+<li>Add custom domain in Netlify dashboard</li>
+<li>Annie-docs.netlify.app → your-domain.com</li>
+</ol>
+<p><strong>✅ Pros</strong>: Easy setup, instant deploys, branch previews, forms
+<strong>❌ Cons</strong>: Build minutes limit (free tier)</p>
+<h3 id="vercel">Vercel<a class="headerlink" href="#vercel" title="Permanent link">&para;</a></h3>
+<p><strong>Deployment via CLI or Dashboard</strong>:</p>
+<ol>
+<li>
+<p><strong>Install Vercel CLI</strong>:
+   <code>bash
+   npm install -g vercel</code></p>
+</li>
+<li>
+<p><strong>Deploy</strong>:
+   <code>bash
+   vercel</code></p>
+</li>
+<li>
+<p><strong>Or via Dashboard</strong>:</p>
+</li>
+<li>Import GitHub repo at <a href="https://vercel.com">vercel.com</a></li>
+<li>Configuration auto-detected via <code>vercel.json</code></li>
+</ol>
+<p><strong>✅ Pros</strong>: Fast edge network, great performance, preview deployments
+<strong>❌ Cons</strong>: Node.js focused (but works with Python)</p>
+<h2 id="self-hosting">💻 Self-Hosting<a class="headerlink" href="#self-hosting" title="Permanent link">&para;</a></h2>
+<h3 id="simple-http-server">Simple HTTP Server<a class="headerlink" href="#simple-http-server" title="Permanent link">&para;</a></h3>
+<pre class="codehilite"><code class="language-bash"># Build site
+mkdocs build
+
+# Serve on custom port
+cd site
+python3 -m http.server 80  # Requires sudo for port 80
+
+# Or with nginx
+sudo apt install nginx
+sudo cp -r site/* /var/www/html/
+</code></pre>
+
+<h3 id="docker-container">Docker Container<a class="headerlink" href="#docker-container" title="Permanent link">&para;</a></h3>
+<p>Create <code>Dockerfile</code>:</p>
+<pre class="codehilite"><code class="language-dockerfile">FROM python:3.11-slim
+
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+
+COPY . .
+RUN mkdocs build
+
+FROM nginx:alpine
+COPY --from=0 /app/site /usr/share/nginx/html
+EXPOSE 80
+</code></pre>
+
+<p>Build and run:</p>
+<pre class="codehilite"><code class="language-bash">docker build -t annie-docs .
+docker run -p 80:80 annie-docs
+</code></pre>
+
+<h2 id="cloud-hosting">☁️ Cloud Hosting<a class="headerlink" href="#cloud-hosting" title="Permanent link">&para;</a></h2>
+<h3 id="aws-s3-cloudfront">AWS S3 + CloudFront<a class="headerlink" href="#aws-s3-cloudfront" title="Permanent link">&para;</a></h3>
+<pre class="codehilite"><code class="language-bash"># Build site
+mkdocs build
+
+# Upload to S3
+aws s3 sync site/ s3://your-bucket-name --delete
+
+# Configure S3 for static hosting
+aws s3 website s3://your-bucket-name --index-document index.html
+</code></pre>
+
+<h3 id="google-cloud-storage">Google Cloud Storage<a class="headerlink" href="#google-cloud-storage" title="Permanent link">&para;</a></h3>
+<pre class="codehilite"><code class="language-bash"># Build and upload
+mkdocs build
+gsutil -m cp -r site/* gs://your-bucket-name/
+
+# Enable website configuration
+gsutil web set -m index.html -e 404.html gs://your-bucket-name
+</code></pre>
+
+<h2 id="security-performance">🛡️ Security &amp; Performance<a class="headerlink" href="#security-performance" title="Permanent link">&para;</a></h2>
+<h3 id="https-configuration">HTTPS Configuration<a class="headerlink" href="#https-configuration" title="Permanent link">&para;</a></h3>
+<p><strong>Free SSL Certificates</strong>:
+- <strong>Let's Encrypt</strong>: Free SSL for custom domains
+- <strong>Cloudflare</strong>: Free tier includes SSL
+- <strong>GitHub Pages</strong>: Automatic HTTPS
+- <strong>Netlify/Vercel</strong>: Free SSL included</p>
+<h3 id="performance-optimization">Performance Optimization<a class="headerlink" href="#performance-optimization" title="Permanent link">&para;</a></h3>
+<p><strong>Content Delivery Network (CDN)</strong>:
+- <strong>Cloudflare</strong>: Free tier available
+- <strong>AWS CloudFront</strong>: Pay-per-use
+- <strong>Netlify/Vercel</strong>: CDN included</p>
+<p><strong>Optimization tips</strong>:</p>
+<pre class="codehilite"><code class="language-bash"># Minify during build (add to mkdocs.yml)
+plugins:
+  - minify:
+      minify_html: true
+      minify_css: true
+      minify_js: true
+</code></pre>
+
+<h2 id="monitoring-analytics">📊 Monitoring &amp; Analytics<a class="headerlink" href="#monitoring-analytics" title="Permanent link">&para;</a></h2>
+<h3 id="google-analytics">Google Analytics<a class="headerlink" href="#google-analytics" title="Permanent link">&para;</a></h3>
+<p>Add to <code>mkdocs.yml</code>:</p>
+<pre class="codehilite"><code class="language-yaml">google_analytics:
+  - 'UA-XXXXXXXX-X'
+  - 'auto'
+</code></pre>
+
+<h3 id="simple-analytics">Simple Analytics<a class="headerlink" href="#simple-analytics" title="Permanent link">&para;</a></h3>
+<pre class="codehilite"><code class="language-html">&lt;!-- Add to custom theme --&gt;
+&lt;script async defer src=&quot;https://scripts.simpleanalyticscdn.com/latest.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+
+<h2 id="continuous-deployment">🔧 Continuous Deployment<a class="headerlink" href="#continuous-deployment" title="Permanent link">&para;</a></h2>
+<h3 id="github-actions-included">GitHub Actions (Included)<a class="headerlink" href="#github-actions-included" title="Permanent link">&para;</a></h3>
+<p>The <code>.github/workflows/deploy-docs.yml</code> automatically:
+1. Builds documentation on every push
+2. Deploys to GitHub Pages
+3. Updates live site within minutes</p>
+<h3 id="webhook-deployment">Webhook Deployment<a class="headerlink" href="#webhook-deployment" title="Permanent link">&para;</a></h3>
+<p>For custom servers, create a webhook endpoint:</p>
+<pre class="codehilite"><code class="language-bash"># webhook.php
+&lt;?php
+if ($_POST['secret'] === 'your-secret') {
+    exec('cd /path/to/docs &amp;&amp; git pull &amp;&amp; mkdocs build');
+}
+?&gt;
+</code></pre>
+
+<h2 id="mobile-optimization">📱 Mobile Optimization<a class="headerlink" href="#mobile-optimization" title="Permanent link">&para;</a></h2>
+<p>The ReadTheDocs theme is mobile-responsive, but test on:
+- 📱 Mobile phones (320px+)
+- 📱 Tablets (768px+)
+- 💻 Desktop (1024px+)</p>
+<h2 id="seo-optimization">🔍 SEO Optimization<a class="headerlink" href="#seo-optimization" title="Permanent link">&para;</a></h2>
+<p>Add to <code>mkdocs.yml</code>:</p>
+<pre class="codehilite"><code class="language-yaml">site_name: Annie Documentation
+site_description: Blazingly fast Approximate Nearest Neighbors in Rust
+site_url: https://your-domain.com
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Programmers-Paradise/Annie
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/rust-annie/
+</code></pre>
+
+<h2 id="troubleshooting">❓ Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="common-issues">Common Issues<a class="headerlink" href="#common-issues" title="Permanent link">&para;</a></h3>
+<p><strong>Build Fails</strong>:</p>
+<pre class="codehilite"><code class="language-bash"># Check Python version
+python --version  # Should be 3.8+
+
+# Reinstall dependencies
+rm -rf venv
+./build-docs.sh
+</code></pre>
+
+<p><strong>404 Errors</strong>:
+- Check <code>mkdocs.yml</code> navigation paths
+- Verify file names match exactly
+- Ensure case sensitivity</p>
+<p><strong>Slow Loading</strong>:
+- Enable gzip compression
+- Use CDN
+- Optimize images
+- Minify CSS/JS</p>
+<h3 id="getting-help">Getting Help<a class="headerlink" href="#getting-help" title="Permanent link">&para;</a></h3>
+<ul>
+<li>🐛 <a href="https://github.com/Programmers-Paradise/Annie-Docs/issues">Report issues</a></li>
+<li>💬 <a href="https://github.com/Programmers-Paradise/Annie-Docs/discussions">Ask questions</a></li>
+<li>📧 Contact maintainers</li>
+</ul>
+<hr />
+<p><strong>Choose the hosting option that best fits your needs:</strong>
+- 🏠 <strong>Local/Testing</strong>: <code>./serve-public.sh</code>
+- 🌐 <strong>Temporary Public</strong>: <code>./tunnel.sh</code>
+- 🆓 <strong>Free Hosting</strong>: GitHub Pages, Netlify, Vercel
+- 💼 <strong>Professional</strong>: AWS, Google Cloud, self-hosted</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../contributing/" class="btn btn-neutral float-left" title="Contributing"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/Programmers-Paradise/Annie" class="fa fa-code-fork" style="color: #fcfcfc"> Programmers-Paradise/Annie</a>
+        </span>
+    
+    
+      <span><a href="../contributing/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

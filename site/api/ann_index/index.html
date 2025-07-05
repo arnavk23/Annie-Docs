@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://annie.io/api/ann_index/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>AnnIndex - Annie.io</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "AnnIndex";
+        var mkdocs_page_input_path = "api/ann_index.md";
+        var mkdocs_page_url = "/api/ann_index/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Annie.io
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Reference</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">AnnIndex</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#constructor">Constructor</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#annindexdim-int-metric-distance">AnnIndex(dim: int, metric: Distance)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#new_minkowskidim-int-p-float">new_minkowski(dim: int, p: float)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#methods">Methods</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#adddata-ndarray-ids-ndarray">add(data: ndarray, ids: ndarray)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#searchquery-ndarray-k-int-tuplendarray-ndarray">search(query: ndarray, k: int) -&gt; Tuple[ndarray, ndarray]</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#search_batchqueries-ndarray-k-int-tuplendarray-ndarray">search_batch(queries: ndarray, k: int) -&gt; Tuple[ndarray, ndarray]</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#search_filter_pyquery-ndarray-k-int-filter_fn-callableint-bool-tuplendarray-ndarray">search_filter_py(query: ndarray, k: int, filter_fn: Callable[[int], bool]) -&gt; Tuple[ndarray, ndarray]</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#len-int">len() -&gt; int</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#dim-int">dim() -&gt; int</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#savepath-str">save(path: str)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#static-loadpath-str-annindex">static load(path: str) -&gt; AnnIndex</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#example">Example</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#features">Features</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#quick-start">Quick Start</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#brute-force-index">Brute-Force Index</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#hnsw-index">HNSW Index</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#brute-force-index_1">Brute-Force Index</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#batch-query">Batch Query</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#thread-safe-index">Thread-Safe Index</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#filtered-search">Filtered Search</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#build-and-query-a-brute-force-annindex-in-python-complete-example">Build and Query a Brute-Force AnnIndex in Python (Complete Example)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#benchmark-results">Benchmark Results</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#view-full-benchmark-dashboard">View Full Benchmark Dashboard →</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#api-reference">API Reference</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#core-classes">Core Classes</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#key-methods">Key Methods</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#development-ci">Development &amp; CI</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#benchmark-automation">Benchmark Automation</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#gpu-acceleration">GPU Acceleration</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#enable-gpu-in-rust">Enable GPU in Rust</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#contributing">Contributing</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#license">License</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../hnsw_index/">PyHnswIndex</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../threadsafe_index/">ThreadSafeAnnIndex</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Features</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../concurrency/">Concurrency</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../filtering/">Filtered Search</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../examples/">Examples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../contributing/">Contributing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../hosting/">Hosting Guide</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Annie.io</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">API Reference</li>
+      <li class="breadcrumb-item active">AnnIndex</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/Programmers-Paradise/Annie/edit/master/docs/api/ann_index.md">Edit on Programmers-Paradise/Annie</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="annindex-brute-force-nearest-neighbor-search">AnnIndex - Brute-force Nearest Neighbor Search<a class="headerlink" href="#annindex-brute-force-nearest-neighbor-search" title="Permanent link">&para;</a></h1>
+<p>The <code>AnnIndex</code> class provides efficient brute-force nearest neighbor search with support for multiple distance metrics and additional features like filtered search.</p>
+<h2 id="constructor">Constructor<a class="headerlink" href="#constructor" title="Permanent link">&para;</a></h2>
+<h3 id="annindexdim-int-metric-distance"><code>AnnIndex(dim: int, metric: Distance)</code><a class="headerlink" href="#annindexdim-int-metric-distance" title="Permanent link">&para;</a></h3>
+<p>Creates a new brute-force index.</p>
+<ul>
+<li><code>dim</code> (int): Vector dimension</li>
+<li><code>metric</code> (Distance): Distance metric (<code>EUCLIDEAN</code>, <code>COSINE</code>, <code>MANHATTAN</code>, <code>CHEBYSHEV</code>)</li>
+</ul>
+<h3 id="new_minkowskidim-int-p-float"><code>new_minkowski(dim: int, p: float)</code><a class="headerlink" href="#new_minkowskidim-int-p-float" title="Permanent link">&para;</a></h3>
+<p>Creates a Minkowski distance index.</p>
+<ul>
+<li><code>dim</code> (int): Vector dimension</li>
+<li><code>p</code> (float): Minkowski exponent (p &gt; 0)</li>
+</ul>
+<h2 id="methods">Methods<a class="headerlink" href="#methods" title="Permanent link">&para;</a></h2>
+<h3 id="adddata-ndarray-ids-ndarray"><code>add(data: ndarray, ids: ndarray)</code><a class="headerlink" href="#adddata-ndarray-ids-ndarray" title="Permanent link">&para;</a></h3>
+<p>Add vectors to the index.</p>
+<ul>
+<li><code>data</code>: N×dim array of float32 vectors</li>
+<li><code>ids</code>: N-dimensional array of int64 IDs</li>
+</ul>
+<h3 id="searchquery-ndarray-k-int-tuplendarray-ndarray"><code>search(query: ndarray, k: int) -&gt; Tuple[ndarray, ndarray]</code><a class="headerlink" href="#searchquery-ndarray-k-int-tuplendarray-ndarray" title="Permanent link">&para;</a></h3>
+<p>Search for k nearest neighbors.</p>
+<ul>
+<li><code>query</code>: dim-dimensional query vector</li>
+<li><code>k</code>: Number of neighbors to return</li>
+<li>Returns: (neighbor IDs, distances)</li>
+</ul>
+<h3 id="search_batchqueries-ndarray-k-int-tuplendarray-ndarray"><code>search_batch(queries: ndarray, k: int) -&gt; Tuple[ndarray, ndarray]</code><a class="headerlink" href="#search_batchqueries-ndarray-k-int-tuplendarray-ndarray" title="Permanent link">&para;</a></h3>
+<p>Batch search for multiple queries.</p>
+<ul>
+<li><code>queries</code>: M×dim array of queries</li>
+<li><code>k</code>: Number of neighbors per query</li>
+<li>Returns: (M×k IDs, M×k distances)</li>
+</ul>
+<h3 id="search_filter_pyquery-ndarray-k-int-filter_fn-callableint-bool-tuplendarray-ndarray"><code>search_filter_py(query: ndarray, k: int, filter_fn: Callable[[int], bool]) -&gt; Tuple[ndarray, ndarray]</code><a class="headerlink" href="#search_filter_pyquery-ndarray-k-int-filter_fn-callableint-bool-tuplendarray-ndarray" title="Permanent link">&para;</a></h3>
+<p>Search with ID filtering.</p>
+<ul>
+<li><code>query</code>: dim-dimensional query vector</li>
+<li><code>k</code>: Maximum neighbors to return</li>
+<li><code>filter_fn</code>: Function that returns True for allowed IDs</li>
+<li>Returns: (filtered IDs, filtered distances)</li>
+</ul>
+<h3 id="len-int"><code>len() -&gt; int</code><a class="headerlink" href="#len-int" title="Permanent link">&para;</a></h3>
+<p>Get the number of entries in the index.</p>
+<ul>
+<li>Returns: Number of entries in the index</li>
+</ul>
+<h3 id="dim-int"><code>dim() -&gt; int</code><a class="headerlink" href="#dim-int" title="Permanent link">&para;</a></h3>
+<p>Get the dimension of vectors in the index.</p>
+<ul>
+<li>Returns: Dimension of vectors</li>
+</ul>
+<h3 id="savepath-str"><code>save(path: str)</code><a class="headerlink" href="#savepath-str" title="Permanent link">&para;</a></h3>
+<p>Save index to disk.</p>
+<h3 id="static-loadpath-str-annindex"><code>static load(path: str) -&gt; AnnIndex</code><a class="headerlink" href="#static-loadpath-str-annindex" title="Permanent link">&para;</a></h3>
+<p>Load index from disk.</p>
+<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
+<pre class="codehilite"><code class="language-python">import numpy as np
+from rust_annie import AnnIndex, Distance
+
+# Create index
+index = AnnIndex(128, Distance.EUCLIDEAN)
+
+# Add data
+data = np.random.rand(1000, 128).astype(np.float32)
+ids = np.arange(1000, dtype=np.int64)
+index.add(data, ids)
+
+# Check index properties
+print(&quot;Number of entries:&quot;, index.len())
+print(&quot;Dimension of vectors:&quot;, index.dim())
+
+# Search
+query = np.random.rand(128).astype(np.float32)
+neighbor_ids, distances = index.search(query, k=5)
+</code></pre>
+
+<h2 id="features">Features<a class="headerlink" href="#features" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Multiple Backends</strong>:</li>
+<li><strong>Brute-force</strong> (exact) with SIMD acceleration</li>
+<li><strong>HNSW</strong> (approximate) for large-scale datasets</li>
+<li><strong>Multiple Distance Metrics</strong>: Euclidean, Cosine, Manhattan, Chebyshev</li>
+<li><strong>Batch Queries</strong> for efficient processing</li>
+<li><strong>Thread-safe</strong> indexes with concurrent access</li>
+<li><strong>Zero-copy</strong> NumPy integration</li>
+<li><strong>On-disk Persistence</strong> with serialization</li>
+<li><strong>Filtered Search</strong> with custom Python callbacks</li>
+<li><strong>GPU Acceleration</strong> for brute-force calculations</li>
+<li><strong>Multi-platform</strong> support (Linux, Windows, macOS)</li>
+<li><strong>Automated CI</strong> with performance tracking</li>
+</ul>
+<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
+<pre class="codehilite"><code class="language-bash"># Stable release from PyPI:
+pip install rust-annie
+
+# Install with GPU support (requires CUDA):
+pip install rust-annie[gpu]
+
+# Or install from source:
+git clone https://github.com/Programmers-Paradise/Annie.git
+cd Annie
+pip install maturin
+maturin develop --release
+</code></pre>
+
+<h2 id="quick-start">Quick Start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h2>
+<h3 id="brute-force-index">Brute-Force Index<a class="headerlink" href="#brute-force-index" title="Permanent link">&para;</a></h3>
+<pre class="codehilite"><code class="language-python">import numpy as np
+from rust_annie import AnnIndex, Distance
+
+# Create index
+index = AnnIndex(128, Distance.EUCLIDEAN)
+
+# Add data
+data = np.random.rand(1000, 128).astype(np.float32)
+ids = np.arange(1000, dtype=np.int64)
+index.add(data, ids)
+
+# Check index properties
+print(&quot;Number of entries:&quot;, index.len())
+print(&quot;Dimension of vectors:&quot;, index.dim())
+
+# Search
+query = np.random.rand(128).astype(np.float32)
+neighbor_ids, distances = index.search(query, k=5)
+</code></pre>
+
+<h3 id="hnsw-index">HNSW Index<a class="headerlink" href="#hnsw-index" title="Permanent link">&para;</a></h3>
+<pre class="codehilite"><code class="language-python">from rust_annie import PyHnswIndex
+
+index = PyHnswIndex(dims=128)
+data = np.random.rand(10000, 128).astype(np.float32)
+ids = np.arange(10000, dtype=np.int64)
+index.add(data, ids)
+
+# Search
+query = np.random.rand(128).astype(np.float32)
+neighbor_ids, _ = index.search(query, k=10)
+</code></pre>
+
+<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
+<h3 id="brute-force-index_1">Brute-Force Index<a class="headerlink" href="#brute-force-index_1" title="Permanent link">&para;</a></h3>
+<pre class="codehilite"><code class="language-python">from rust_annie import AnnIndex, Distance
+import numpy as np
+
+# Create index
+idx = AnnIndex(4, Distance.COSINE)
+
+# Add data
+data = np.random.rand(50, 4).astype(np.float32)
+ids = np.arange(50, dtype=np.int64)
+idx.add(data, ids)
+
+# Check index properties
+print(&quot;Number of entries:&quot;, idx.len())
+print(&quot;Dimension of vectors:&quot;, idx.dim())
+
+# Search
+labels, dists = idx.search(data[10], k=3)
+print(labels, dists)
+</code></pre>
+
+<h3 id="batch-query">Batch Query<a class="headerlink" href="#batch-query" title="Permanent link">&para;</a></h3>
+<pre class="codehilite"><code class="language-python">from rust_annie import AnnIndex, Distance
+import numpy as np
+
+# Create index
+idx = AnnIndex(16, Distance.EUCLIDEAN)
+
+# Add data
+data = np.random.rand(1000, 16).astype(np.float32)
+ids = np.arange(1000, dtype=np.int64)
+idx.add(data, ids)
+
+# Check index properties
+print(&quot;Number of entries:&quot;, idx.len())
+print(&quot;Dimension of vectors:&quot;, idx.dim())
+
+# Batch search
+queries = data[:32]
+labels_batch, dists_batch = idx.search_batch(queries, k=10)
+print(labels_batch.shape)  # (32, 10)
+</code></pre>
+
+<h3 id="thread-safe-index">Thread-Safe Index<a class="headerlink" href="#thread-safe-index" title="Permanent link">&para;</a></h3>
+<pre class="codehilite"><code class="language-python">from rust_annie import ThreadSafeAnnIndex, Distance
+import numpy as np
+from concurrent.futures import ThreadPoolExecutor
+
+# Create thread-safe index
+idx = ThreadSafeAnnIndex(32, Distance.EUCLIDEAN)
+
+# Add data
+data = np.random.rand(500, 32).astype(np.float32)
+ids = np.arange(500, dtype=np.int64)
+idx.add(data, ids)
+
+# Check index properties
+print(&quot;Number of entries:&quot;, idx.len())
+print(&quot;Dimension of vectors:&quot;, idx.dim())
+
+# Concurrent searches
+def task(q):
+    return idx.search(q, k=5)
+
+queries = data[:10]
+with ThreadPoolExecutor(max_workers=8) as executor:
+    results = executor.map(task, queries)
+    for f in results:
+        print(f)
+</code></pre>
+
+<h3 id="filtered-search">Filtered Search<a class="headerlink" href="#filtered-search" title="Permanent link">&para;</a></h3>
+<pre class="codehilite"><code class="language-python">from rust_annie import AnnIndex, Distance
+import numpy as np
+
+# Create index
+index = AnnIndex(3, Distance.EUCLIDEAN)
+data = np.array([
+    [1.0, 2.0, 3.0],
+    [4.0, 5.0, 6.0],
+    [7.0, 8.0, 9.0]
+], dtype=np.float32)
+ids = np.array([10, 20, 30], dtype=np.int64)
+index.add(data, ids)
+
+# Check index properties
+print(&quot;Number of entries:&quot;, index.len())
+print(&quot;Dimension of vectors:&quot;, index.dim())
+
+# Filter function
+def even_ids(id: int) -&gt; bool:
+    return id % 2 == 0
+
+# Filtered search
+query = np.array([1.0, 2.0, 3.0], dtype=np.float32)
+filtered_ids, filtered_dists = index.search_filter_py(
+    query, 
+    k=3, 
+    filter_fn=even_ids
+)
+print(filtered_ids)  # [10, 30] (20 is filtered out)
+</code></pre>
+
+<h2 id="build-and-query-a-brute-force-annindex-in-python-complete-example">Build and Query a Brute-Force AnnIndex in Python (Complete Example)<a class="headerlink" href="#build-and-query-a-brute-force-annindex-in-python-complete-example" title="Permanent link">&para;</a></h2>
+<p>This section demonstrates a complete, beginner-friendly example of how to build and query a <code>brute-force AnnIndex</code> using Python.</p>
+<h2 id="benchmark-results">Benchmark Results<a class="headerlink" href="#benchmark-results" title="Permanent link">&para;</a></h2>
+<p>Measured on a 6-core CPU:</p>
+<p>That’s a \~4× speedup vs. NumPy!</p>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Dataset Size</th>
+<th>Time (ms)</th>
+<th>Speedup vs Python</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Single Query (Brute)</td>
+<td>10,000 × 64</td>
+<td>0.7</td>
+<td>4×</td>
+</tr>
+<tr>
+<td>Batch Query (64)</td>
+<td>10,000 × 64</td>
+<td>0.23</td>
+<td>12×</td>
+</tr>
+<tr>
+<td>HNSW Query</td>
+<td>100,000 × 128</td>
+<td>0.05</td>
+<td>56×</td>
+</tr>
+</tbody>
+</table>
+<h5 id="view-full-benchmark-dashboard"><a href="https://programmers-paradise.github.io/Annie/">View Full Benchmark Dashboard →</a><a class="headerlink" href="#view-full-benchmark-dashboard" title="Permanent link">&para;</a></h5>
+<p>You’ll find:</p>
+<h2 id="api-reference">API Reference<a class="headerlink" href="#api-reference" title="Permanent link">&para;</a></h2>
+<h3 id="core-classes">Core Classes<a class="headerlink" href="#core-classes" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AnnIndex</td>
+<td>Brute-force exact search</td>
+</tr>
+<tr>
+<td>PyHnswIndex</td>
+<td>Approximate HNSW index</td>
+</tr>
+<tr>
+<td>ThreadSafeAnnIndex</td>
+<td>Thread-safe wrapper for AnnIndex</td>
+</tr>
+<tr>
+<td>Distance</td>
+<td>Distance metrics (Euclidean, Cosine, etc)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="key-methods">Key Methods<a class="headerlink" href="#key-methods" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>add(data, ids)</td>
+<td>Add vectors to index</td>
+</tr>
+<tr>
+<td>search(query, k)</td>
+<td>Single query search</td>
+</tr>
+<tr>
+<td>search_batch(queries, k)</td>
+<td>Batch query search</td>
+</tr>
+<tr>
+<td>search_filter_py(query, k, filter_fn)</td>
+<td>Filtered search</td>
+</tr>
+<tr>
+<td>len()</td>
+<td>Get the number of entries in the index</td>
+</tr>
+<tr>
+<td>dim()</td>
+<td>Get the dimension of vectors in the index</td>
+</tr>
+<tr>
+<td>save(path)</td>
+<td>Save index to disk</td>
+</tr>
+<tr>
+<td>load(path)</td>
+<td>Load index from disk</td>
+</tr>
+</tbody>
+</table>
+<h2 id="development-ci">Development &amp; CI<a class="headerlink" href="#development-ci" title="Permanent link">&para;</a></h2>
+<p><strong>CI</strong> runs on GitHub Actions, building wheels on Linux, Windows, macOS, plus:</p>
+<ul>
+<li><code>benchmark.py</code> &amp; <code>batch_benchmark.py</code> &amp; <code>compare_results.py</code></li>
+</ul>
+<pre class="codehilite"><code class="language-bash"># Run tests
+cargo test
+pytest tests/
+
+# Run benchmarks
+python scripts/benchmark.py
+python scripts/batch_benchmark.py
+
+# Generate documentation
+mkdocs build
+</code></pre>
+
+<p>CI pipeline includes:
+  - Cross-platform builds (Linux, Windows, macOS)
+  - Unit tests and integration tests
+  - Performance benchmarking
+  - Documentation generation</p>
+<h3 id="benchmark-automation">Benchmark Automation<a class="headerlink" href="#benchmark-automation" title="Permanent link">&para;</a></h3>
+<p>Benchmarks are tracked over time using:</p>
+<h2 id="gpu-acceleration">GPU Acceleration<a class="headerlink" href="#gpu-acceleration" title="Permanent link">&para;</a></h2>
+<h3 id="enable-gpu-in-rust">Enable GPU in Rust<a class="headerlink" href="#enable-gpu-in-rust" title="Permanent link">&para;</a></h3>
+<p>Enable CUDA support for brute-force calculations:</p>
+<pre class="codehilite"><code class="language-bash"># Install with GPU support
+pip install rust-annie[gpu]
+
+# Or build from source with GPU features
+maturin develop --release --features gpu
+</code></pre>
+
+<p>Supported operations:
+  - Batch L2 distance calculations
+  - High-dimensional similarity search</p>
+<p>Requirements:
+  - NVIDIA GPU with CUDA support
+  - CUDA Toolkit installed</p>
+<h2 id="contributing">Contributing<a class="headerlink" href="#contributing" title="Permanent link">&para;</a></h2>
+<p>Contributions are welcome! Please:</p>
+<p>See <a href="./CONTRIBUTING.md">CONTRIBUTING.md</a> for details.</p>
+<h2 id="license">License<a class="headerlink" href="#license" title="Permanent link">&para;</a></h2>
+<p>This project is licensed under the <strong>MIT License</strong>. See <a href="./LICENSE">LICENSE</a> for details.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../.." class="btn btn-neutral float-left" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../hnsw_index/" class="btn btn-neutral float-right" title="PyHnswIndex">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/Programmers-Paradise/Annie" class="fa fa-code-fork" style="color: #fcfcfc"> Programmers-Paradise/Annie</a>
+        </span>
+    
+    
+      <span><a href="../.." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../hnsw_index/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

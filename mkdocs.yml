@@ -1,0 +1,36 @@
+site_name: Annie.io
+site_description: Blazingly fast Approximate Nearest Neighbors in Rust
+site_url: https://annie.io
+repo_url: https://github.com/Programmers-Paradise/Annie
+repo_name: Programmers-Paradise/Annie
+
+theme:
+  name: readthedocs
+
+nav:
+  - Home: index.md
+  - API Reference:
+    - AnnIndex: api/ann_index.md
+    - PyHnswIndex: api/hnsw_index.md
+    - ThreadSafeAnnIndex: api/threadsafe_index.md
+  - Features:
+    - Concurrency: concurrency.md
+    - Filtered Search: filtering.md
+  - Examples: examples.md
+  - Contributing: contributing.md
+  - Hosting Guide: hosting.md
+
+markdown_extensions:
+  - codehilite:
+      guess_lang: false
+  - toc:
+      permalink: true
+
+plugins:
+  - search
+
+# Directory where the documentation source files are located
+docs_dir: docs
+
+# Directory where the built site will be located
+site_dir: site
