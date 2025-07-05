@@ -5,6 +5,7 @@ Blazingly fast Approximate Nearest Neighbors in Rust
 ## Installation
 
 
+
 ```bash
 # Stable release from PyPI:
 pip install rust-annie
@@ -17,6 +18,7 @@ maturin develop --release
 ```
 
 ## Basic Usage
+
 
 
 ```python
@@ -38,6 +40,7 @@ print("Distances :", dists)
 ```
 
 ## Key Features
+
 
 
 - **Ultra-fast brute-force** k-NN search (Euclidean, Cosine, Manhattan, Chebyshev)  
