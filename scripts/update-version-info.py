@@ -54,10 +54,9 @@ def main():
     # Files to update
     files_to_update = [
         "mkdocs.yml",
-        "docs/index.md",
+        "docs/index.md", 
         "README.md",
-        "configs/netlify.toml",
-        "configs/vercel.json",
+        "netlify.toml",
     ]
 
     updated_count = 0

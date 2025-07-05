@@ -177,8 +177,8 @@ jobs:
         if [ -f "README.md" ]; then
           files_to_check="$files_to_check README.md"
         fi
-        if [ -f "CONTRIBUTING.md" ]; then
-          files_to_check="$files_to_check CONTRIBUTING.md"
+        if [ -f "docs-management/CONTRIBUTING.md" ]; then
+          files_to_check="$files_to_check docs-management/CONTRIBUTING.md"
         fi
         
         if [ -n "$files_to_check" ]; then

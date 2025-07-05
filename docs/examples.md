@@ -403,7 +403,7 @@ Requirements:
 
 Contributions are welcome! Please:
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for details.
+See [../docs-management/CONTRIBUTING.md](../docs-management/CONTRIBUTING.md) for details.
 
 ## License
 

@@ -1,6 +1,6 @@
 # Annie.io Documentation
 
-[![Documentation](https://img.shields.io/badge/docs-annie.io-blue)](https://annie.io)
+[![Documentation](https://img.shields.io/badge/docs-netlify-blue)](https://annie-docs.netlify.app/)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/Programmers-Paradise/Annie-Docs/deploy-docs.yml?branch=main)](https://github.com/Programmers-Paradise/Annie-Docs/actions)
 [![CI Status](https://img.shields.io/github/actions/workflow/status/Programmers-Paradise/Annie-Docs/ci.yml?branch=main&label=CI)](https://github.com/Programmers-Paradise/Annie-Docs/actions)
 [![CodeQL](https://img.shields.io/github/actions/workflow/status/Programmers-Paradise/Annie-Docs/codeql.yml?branch=main&label=CodeQL)](https://github.com/Programmers-Paradise/Annie-Docs/actions)
@@ -8,29 +8,29 @@
 [![Security](https://img.shields.io/badge/Security-Policy-red.svg)](SECURITY.md)
 [![Main Repo](https://img.shields.io/badge/source-Annie-green)](https://github.com/Programmers-Paradise/Annie)
 
-> **Official documentation for Annie - Blazingly fast Approximate Nearest Neighbors in Rust** 🦀⚡
+> **Official documentation for Annie - Blazingly fast Approximate Nearest Neighbors in Rust**
 
-This repository contains the source code and automation for [annie.io](https://annie.io), the comprehensive documentation site for the Annie library.
+This repository contains the source code and automation for [annie-docs.netlify.app](https://annie-docs.netlify.app/), the comprehensive documentation site for the Annie library.
 
 ---
 
-## 🔗 Quick Navigation
+## Quick Navigation
 
 | Resource                  | Description                       | Link                                                                          |
 | ------------------------- | --------------------------------- | ----------------------------------------------------------------------------- |
-| **📖 Live Documentation** | Complete API docs & guides        | [annie.io](https://annie.io)                                                  |
-| **🚀 Annie Library**      | Main source code repository       | [GitHub](https://github.com/Programmers-Paradise/Annie)                       |
-| **📦 PyPI Package**       | Install Annie via pip             | [rust-annie](https://pypi.org/project/rust-annie/)                            |
-| **🐛 Report Doc Issues**  | Documentation bugs & improvements | [Issues](https://github.com/Programmers-Paradise/Annie-Docs/issues)           |
-| **💬 Community**          | Questions & discussions           | [Discussions](https://github.com/Programmers-Paradise/Annie-Docs/discussions) |
+| **Live Documentation** | Complete API docs & guides        | [annie-docs.netlify.app](https://annie-docs.netlify.app/)                     |
+| **Annie Library**      | Main source code repository       | [GitHub](https://github.com/Programmers-Paradise/Annie)                       |
+| **PyPI Package**       | Install Annie via pip             | [rust-annie](https://pypi.org/project/rust-annie/)                            |
+| **Report Doc Issues**  | Documentation bugs & improvements | [Issues](https://github.com/Programmers-Paradise/Annie-Docs/issues)           |
+| **Community**          | Questions & discussions           | [Discussions](https://github.com/Programmers-Paradise/Annie-Docs/discussions) |
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```
 annie-docs/
-├── 📁 docs/                    # Documentation content (Markdown)
+├── docs/                    # Documentation content (Markdown)
 │   ├── index.md               # Homepage
 │   ├── api/                   # API reference docs
 │   │   ├── ann_index.md       # ANN Index API
@@ -40,38 +40,36 @@ annie-docs/
 │   ├── filtering.md           # Filtering guide
 │   ├── concurrency.md         # Concurrency documentation
 │   └── ...                   # Additional guides
-├── 📁 scripts/               # Build & deployment automation
+├── scripts/               # Build & deployment automation
 │   ├── build-docs.sh         # Build documentation
 │   ├── deploy.sh             # Deploy to production
 │   ├── serve-public.sh       # Local network sharing
 │   ├── sync-api-docs.py      # Auto-sync API docs
 │   ├── sync-readme-content.py # Auto-sync README content
 │   └── update-version-info.py # Auto-update version info
-├── 📁 configs/               # Platform configurations
+├── configs/               # Platform configurations
 │   ├── netlify.toml          # Netlify deployment
-│   ├── vercel.json           # Vercel deployment
 │   └── CNAME                 # Custom domain config
-├── 📁 .github/workflows/     # CI/CD automation
+├── .github/workflows/     # CI/CD automation
 │   ├── deploy-docs.yml       # Auto-deployment
 │   ├── sync-docs.yml         # Auto-sync from main repo
 │   ├── ci.yml                # Continuous integration
 │   ├── codeql.yml            # Security analysis
 │   └── dependencies.yml     # Dependency updates
-├── 📁 docs-management/       # Setup & deployment guides
-│   ├── AUTO-SYNC-SETUP.md    # How to set up auto-sync
-│   ├── ANNIE-IO-DEPLOYMENT.md # Deploy to annie.io guide
-│   ├── SETUP.md              # Initial setup guide
-│   └── DOMAIN-SETUP.md       # Domain configuration
-├── 📄 mkdocs.yml             # MkDocs configuration
-├── 📄 requirements.txt       # Python dependencies
-├── 📄 LICENSE                # MIT License
-├── 📄 SECURITY.md            # Security policy
-└── 📄 README.md              # This file
+├── docs-management/       # Setup & deployment guides
+│   ├── CONTRIBUTING.md       # Contribution guidelines
+│   ├── FILE-ORGANIZATION.md  # Repository structure guide
+│   └── SETUP-SUMMARY.md      # Complete setup summary
+├── mkdocs.yml             # MkDocs configuration
+├── requirements.txt       # Python dependencies
+├── LICENSE                # MIT License
+├── SECURITY.md            # Security policy
+└── README.md              # This file
 ```
 
 ---
 
-## 🛠️ Local Development
+## Local Development
 
 ### Quick Start
 
@@ -101,7 +99,7 @@ Visit `http://localhost:8000` to see your local documentation.
 
 ---
 
-## 🔄 Automatic Synchronization
+## Automatic Synchronization
 
 This documentation repository automatically syncs with the [main Annie library](https://github.com/Programmers-Paradise/Annie):
 
@@ -114,15 +112,15 @@ This documentation repository automatically syncs with the [main Annie library](
 
 ### What Gets Synced
 
-- 📚 **API documentation** from Rust/Python docstrings
-- 📖 **Examples** from `/examples` directory
-- 📝 **README** content and project guides
-- 🔢 **Version information** from Cargo.toml
-- 📋 **Documentation** from main repo's `/docs` folder
+- **API documentation** from Rust/Python docstrings
+- **Examples** from `/examples` directory
+- **README** content and project guides
+- **Version information** from Cargo.toml
+- **Documentation** from main repo's `/docs` folder
 
 ### Setup Auto-Sync
 
-To enable automatic syncing, see the complete guide: [**docs-management/AUTO-SYNC-SETUP.md**](docs-management/AUTO-SYNC-SETUP.md)
+To enable automatic syncing, see the complete guide: [**docs-management/SETUP-SUMMARY.md**](docs-management/SETUP-SUMMARY.md)
 
 This involves:
 
@@ -132,51 +130,31 @@ This involves:
 
 ---
 
-## 🌐 Deploy to annie.io
+## Deployment
 
-### Quick Deployment
+### Current Deployment
 
-The easiest way to deploy your documentation to `https://annie.io`:
+The documentation is automatically deployed to: **[annie-docs.netlify.app](https://annie-docs.netlify.app/)**
 
-#### 1. **Configure GitHub Pages**
+### Automatic Deployment
 
-- Repository **Settings** → **Pages**
-- Source: **GitHub Actions**
-- Custom domain: `annie.io`
-- Enforce HTTPS: ✅
+The site automatically deploys when you push to the `main` branch:
 
-#### 2. **Update DNS Records**
+1. **Push to GitHub** → Triggers build
+2. **MkDocs builds** → Generates static site  
+3. **Netlify deploys** → Site goes live
 
-At your domain registrar, add these A records:
-
-```dns
-Type: A     Name: @    Value: 185.199.108.153
-Type: A     Name: @    Value: 185.199.109.153
-Type: A     Name: @    Value: 185.199.110.153
-Type: A     Name: @    Value: 185.199.111.153
-Type: CNAME Name: www  Value: programmers-paradise.github.io
-```
-
-#### 3. **Deploy**
+### Manual Deployment
 
 ```bash
 git push origin main  # Triggers automatic deployment
 ```
 
-### Complete Deployment Guide
-
-For detailed instructions including Netlify, Vercel, and troubleshooting:  
-👉 **[docs-management/ANNIE-IO-DEPLOYMENT.md](docs-management/ANNIE-IO-DEPLOYMENT.md)**
-
-### Alternative Hosting Options
-
-- **Netlify**: One-click deploy with `configs/netlify.toml`
-- **Vercel**: Fast edge deployment with `configs/vercel.json`
-- **Custom server**: Deploy `site/` directory contents
+For detailed deployment instructions, see: [**docs-management/SETUP-SUMMARY.md**](docs-management/SETUP-SUMMARY.md)
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 ### Quick Contribution
 
@@ -187,17 +165,17 @@ For detailed instructions including Netlify, Vercel, and troubleshooting:
 5. **Test** with `mkdocs serve`
 6. **Submit** a pull request
 
-For detailed guidelines, see [CONTRIBUTING.md](CONTRIBUTING.md).
+For detailed guidelines, see [docs-management/CONTRIBUTING.md](docs-management/CONTRIBUTING.md).
 
 ---
 
-## 📄 License
+## License
 
 This documentation repository is licensed under the **MIT License**.
 
 ---
 
-## 🆘 Support & Help
+## Support & Help
 
 | Issue Type               | Where to Go                                                                          |
 | ------------------------ | ------------------------------------------------------------------------------------ |
@@ -210,10 +188,10 @@ This documentation repository is licensed under the **MIT License**.
 
 <div align="center">
 
-**[📖 Visit annie.io](https://annie.io)** • **[🚀 Get Started](https://annie.io/#installation)** • **[🤝 Contribute](CONTRIBUTING.md)**
+**[Visit annie-docs.netlify.app](https://annie-docs.netlify.app/)** • **[Get Started](https://annie-docs.netlify.app/#installation)** • **[Contribute](docs-management/CONTRIBUTING.md)**
 
 ---
 
-_Powered by MkDocs • Hosted on GitHub Pages • Made with ❤️ by the Annie team_
+_Powered by MkDocs • Hosted on Netlify • Made with care by the Annie team_
 
 </div>

@@ -2,7 +2,7 @@
 
 Thank you for your interest in contributing to Annie's documentation! This guide will help you get started with contributing to our documentation site.
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Getting Started](#getting-started)
 - [Documentation Structure](#documentation-structure)
@@ -12,7 +12,7 @@ Thank you for your interest in contributing to Annie's documentation! This guide
 - [Submitting Changes](#submitting-changes)
 - [Review Process](#review-process)
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -23,17 +23,20 @@ Thank you for your interest in contributing to Annie's documentation! This guide
 ### Quick Setup
 
 1. **Fork and Clone**
+
    ```bash
    git clone https://github.com/YOUR-USERNAME/Annie-Docs.git
    cd Annie-Docs
    ```
 
 2. **Build Documentation**
+
    ```bash
    ./build-docs.sh
    ```
 
 3. **Start Development Server**
+
    ```bash
    source venv/bin/activate
    mkdocs serve
@@ -42,7 +45,7 @@ Thank you for your interest in contributing to Annie's documentation! This guide
 4. **Open in Browser**
    Visit `http://localhost:8000` to see your changes live.
 
-## 📁 Documentation Structure
+## Documentation Structure
 
 ```
 docs/
@@ -56,7 +59,7 @@ docs/
 └── filtering.md          # Filtered search
 ```
 
-## 🛠 Setting Up Development Environment
+## Setting Up Development Environment
 
 ### Manual Setup
 
@@ -85,7 +88,7 @@ mkdocs serve --dev-addr=0.0.0.0:8000
 ./deploy.sh
 ```
 
-## ✏️ Making Changes
+## Making Changes
 
 ### Types of Contributions
 
@@ -97,19 +100,23 @@ mkdocs serve --dev-addr=0.0.0.0:8000
 ### Workflow
 
 1. **Create a Branch**
+
    ```bash
    git checkout -b feature/improve-examples
    ```
 
 2. **Make Your Changes**
+
    - Edit files in the `docs/` directory
    - Use Markdown syntax
    - Follow our writing guidelines
 
 3. **Test Locally**
+
    ```bash
    mkdocs serve
    ```
+
    Visit `http://localhost:8000` to review changes
 
 4. **Build and Verify**
@@ -118,7 +125,7 @@ mkdocs serve --dev-addr=0.0.0.0:8000
    ```
    Ensure no build errors
 
-## 📝 Writing Guidelines
+## Writing Guidelines
 
 ### Markdown Standards
 
@@ -172,17 +179,19 @@ print(f"Found {len(neighbor_ids)} neighbors")
 - **Consistent Terminology**: Use the same terms throughout
 - **Active Voice**: "Create an index" vs "An index is created"
 
-## 📤 Submitting Changes
+## Submitting Changes
 
 ### Before Submitting
 
 1. **Test Your Changes**
+
    ```bash
    mkdocs build  # Check for build errors
    mkdocs serve  # Test locally
    ```
 
 2. **Check Links**
+
    - Ensure all internal links work
    - Verify external links are accessible
 
@@ -194,12 +203,14 @@ print(f"Found {len(neighbor_ids)} neighbors")
 ### Creating a Pull Request
 
 1. **Commit Your Changes**
+
    ```bash
    git add .
    git commit -m "docs: improve examples in filtering.md"
    ```
 
 2. **Push to Your Fork**
+
    ```bash
    git push origin feature/improve-examples
    ```
@@ -214,25 +225,29 @@ print(f"Found {len(neighbor_ids)} neighbors")
 
 ```markdown
 ## Description
+
 Brief description of changes made.
 
 ## Type of Change
+
 - [ ] Bug fix (typo, broken link, etc.)
 - [ ] Content update (new examples, clarifications)
 - [ ] New documentation (new features)
 - [ ] Structure improvement
 
 ## Testing
+
 - [ ] Built successfully with `mkdocs build`
 - [ ] Tested locally with `mkdocs serve`
 - [ ] Checked all links work
 - [ ] Verified code examples run
 
 ## Screenshots (if applicable)
+
 Add screenshots of significant visual changes.
 ```
 
-## 🔍 Review Process
+## Review Process
 
 ### What We Look For
 
@@ -254,7 +269,7 @@ Add screenshots of significant visual changes.
 - Documentation is automatically deployed
 - Your contribution is credited
 
-## 🏷️ Issue Labels
+## Issue Labels
 
 When creating issues, use these labels:
 
@@ -264,19 +279,11 @@ When creating issues, use these labels:
 - `new-content` - Requests for new documentation
 - `good-first-issue` - Good for newcomers
 
-## 💬 Getting Help
+## Getting Help
 
 - **GitHub Discussions**: Ask questions about contributing
 - **Issues**: Report bugs or request features
-- **Email**: Contact maintainers directly
-
-## 🎉 Recognition
-
-Contributors are recognized in:
-- GitHub contributors list
-- Release notes for significant contributions
-- Special mentions for major improvements
 
 ---
 
-Thank you for helping make Annie's documentation better! 🚀
+Thank you for helping make Annie's documentation better!

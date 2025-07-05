@@ -1,6 +1,6 @@
 site_name: Annie.io
 site_description: Blazingly fast Approximate Nearest Neighbors in Rust
-site_url: https://annie.io
+site_url: https://annie-docs.netlify.app/
 repo_url: https://github.com/Programmers-Paradise/Annie
 repo_name: Programmers-Paradise/Annie
 
@@ -18,7 +18,6 @@ nav:
     - Filtered Search: filtering.md
   - Examples: examples.md
   - Contributing: contributing.md
-  - Hosting Guide: hosting.md
 
 markdown_extensions:
   - codehilite:
