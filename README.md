@@ -1,271 +1,209 @@
-# Annie.io
+# Annie.io Documentation
 
-[![Documentation Status](https://img.shields.io/badge/docs-live-brightgreen)](https://annie.io)
+[![Documentation](https://img.shields.io/badge/docs-annie.io-blue)](https://annie.io)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/Programmers-Paradise/Annie-Docs/deploy-docs.yml?branch=main)](https://github.com/Programmers-Paradise/Annie-Docs/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Python Package](https://img.shields.io/pypi/v/rust-annie)](https://pypi.org/project/rust-annie/)
+[![Main Repo](https://img.shields.io/badge/source-Annie-green)](https://github.com/Programmers-Paradise/Annie)
 
-> **Blazingly fast Approximate Nearest Neighbors in Rust** 🦀⚡
+> **Official documentation for Annie - Blazingly fast Approximate Nearest Neighbors in Rust** 🦀⚡
 
-Welcome to the official documentation repository for **Annie** - a high-performance ANN (Approximate Nearest Neighbor) library that brings the speed of Rust to Python developers.
-
----
-
-## � Quick Links
-
-| Resource | Link | Description |
-|----------|------|-------------|
-| 📖 **Documentation** | [annie.io](https://annie.io) | Complete API docs & guides |
-| 📦 **PyPI Package** | [rust-annie](https://pypi.org/project/rust-annie/) | Install via pip |
-| 💻 **Source Code** | [GitHub](https://github.com/Programmers-Paradise/Annie) | Main repository |
-| 🐛 **Report Issues** | [Issues](https://github.com/Programmers-Paradise/Annie-Docs/issues) | Bug reports & features |
-| � **Discussions** | [Discussions](https://github.com/Programmers-Paradise/Annie-Docs/discussions) | Community support |
+This repository contains the source code and automation for [annie.io](https://annie.io), the comprehensive documentation site for the Annie library.
 
 ---
 
-## 🎯 What is Annie?
+## 🔗 Quick Navigation
 
-Annie is a **high-performance** nearest neighbor search library that combines the **speed of Rust** with the **ease of Python**. Perfect for:
-
-- 🔍 **Similarity Search** - Find similar items in large datasets
-- 🤖 **Machine Learning** - Vector embeddings and feature matching  
-- 📊 **Data Science** - Clustering and dimensionality reduction
-- 🏗️ **Production Systems** - High-throughput search applications
-
-### ⚡ Performance Highlights
-
-| Operation | Dataset Size | Time | Speedup vs NumPy |
-|-----------|--------------|------|-------------------|
-| **Single Query** | 10K × 64 dims | 0.7ms | **4× faster** |
-| **Batch Query** | 10K × 64 dims | 0.23ms | **12× faster** |
-| **HNSW Search** | 100K × 128 dims | 0.05ms | **56× faster** |
+| Resource                  | Description                       | Link                                                                          |
+| ------------------------- | --------------------------------- | ----------------------------------------------------------------------------- |
+| **📖 Live Documentation** | Complete API docs & guides        | [annie.io](https://annie.io)                                                  |
+| **🚀 Annie Library**      | Main source code repository       | [GitHub](https://github.com/Programmers-Paradise/Annie)                       |
+| **📦 PyPI Package**       | Install Annie via pip             | [rust-annie](https://pypi.org/project/rust-annie/)                            |
+| **🐛 Report Doc Issues**  | Documentation bugs & improvements | [Issues](https://github.com/Programmers-Paradise/Annie-Docs/issues)           |
+| **💬 Community**          | Questions & discussions           | [Discussions](https://github.com/Programmers-Paradise/Annie-Docs/discussions) |
 
 ---
 
-## 📁 Documentation Structure
-
-This repository powers [annie.io](https://annie.io) using **MkDocs**:
+## 📁 Repository Structure
 
 ```
-📂 annie.io/
-├── 🏠 Homepage              # Getting started & overview
-├── � API Reference        # Complete class documentation
-│   ├── AnnIndex           # Brute-force exact search
-│   ├── PyHnswIndex        # Approximate HNSW search  
-│   └── ThreadSafeAnnIndex # Concurrent operations
-├── ✨ Features            
-│   ├── Concurrency        # Thread-safe operations
-│   └── Filtering          # Custom search filters
-├── � Examples            # Practical use cases
-├── 🤝 Contributing        # How to help improve Annie
-└── 🌐 Hosting Guide       # Deployment options
+annie-docs/
+├── 📁 docs/                    # Documentation content (Markdown)
+│   ├── index.md               # Homepage
+│   ├── api/                   # API reference docs
+│   │   ├── ann_index.md       # ANN Index API
+│   │   ├── hnsw_index.md      # HNSW Index API
+│   │   └── threadsafe_index.md # ThreadSafe Index API
+│   ├── examples.md            # Usage examples
+│   ├── filtering.md           # Filtering guide
+│   ├── concurrency.md         # Concurrency documentation
+│   └── ...                   # Additional guides
+├── 📁 scripts/               # Build & deployment automation
+│   ├── build-docs.sh         # Build documentation
+│   ├── deploy.sh             # Deploy to production
+│   ├── serve-public.sh       # Local network sharing
+│   ├── sync-api-docs.py      # Auto-sync API docs
+│   ├── sync-readme-content.py # Auto-sync README content
+│   └── update-version-info.py # Auto-update version info
+├── 📁 configs/               # Platform configurations
+│   ├── netlify.toml          # Netlify deployment
+│   ├── vercel.json           # Vercel deployment
+│   └── CNAME                 # Custom domain config
+├── 📁 .github/workflows/     # CI/CD automation
+│   ├── deploy-docs.yml       # Auto-deployment
+│   └── sync-docs.yml         # Auto-sync from main repo
+├── 📁 docs-management/       # Setup & deployment guides
+│   ├── AUTO-SYNC-SETUP.md    # How to set up auto-sync
+│   ├── ANNIE-IO-DEPLOYMENT.md # Deploy to annie.io guide
+│   └── ...                   # Project status files
+├── 📄 mkdocs.yml             # MkDocs configuration
+├── 📄 requirements.txt       # Python dependencies
+└── 📄 README.md              # This file
 ```
 
 ---
 
-## �️ Local Development
+## 🛠️ Local Development
 
-### Quick Start (Recommended)
+### Quick Start
 
 ```bash
-git clone https://github.com/Programmers-Paradise/Annie-Docs.git
-cd Annie-Docs
-./build-docs.sh
-```
-
-The script automatically:
-- ✅ Creates Python virtual environment
-- ✅ Installs MkDocs dependencies  
-- ✅ Builds the documentation site
-- ✅ Provides local serving instructions
-
-### Manual Setup
-
-```bash
-# 1. Clone and navigate
+# Clone documentation repository
 git clone https://github.com/Programmers-Paradise/Annie-Docs.git
 cd Annie-Docs
 
-# 2. Create virtual environment
-python3 -m venv venv
-source venv/bin/activate
+# Build documentation (creates venv, installs deps, builds site)
+./scripts/build-docs.sh
 
-# 3. Install dependencies
-pip install -r requirements.txt
-
-# 4. Build documentation
-mkdocs build
-
-# 5. Serve locally with live reload
-mkdocs serve --dev-addr=0.0.0.0:8000
-```
-
-Visit **http://localhost:8000** to view your local documentation site.
-
-### 🔄 Live Development
-
-```bash
+# Serve locally with live reload
 source venv/bin/activate
 mkdocs serve
 ```
 
-Features:
-- 🔄 **Auto-reload** on file changes
-- 👀 **Live preview** of edits
-- ⚡ **Instant feedback** for documentation changes
+Visit `http://localhost:8000` to see your local documentation.
+
+### Available Scripts
+
+| Script                      | Purpose               | Usage                 |
+| --------------------------- | --------------------- | --------------------- |
+| `./scripts/build-docs.sh`   | Build documentation   | One-command setup     |
+| `./scripts/serve-public.sh` | Share on network      | `http://YOUR-IP:8080` |
+| `./scripts/deploy.sh`       | Production deployment | Build + optimization  |
+| `./scripts/tunnel.sh`       | Temporary public URL  | Requires ngrok        |
 
 ---
 
-## 🌐 Public Access Options
+## 🔄 Automatic Synchronization
 
-### 🏠 Local Network Sharing
+This documentation repository automatically syncs with the [main Annie library](https://github.com/Programmers-Paradise/Annie):
 
-Share with colleagues on your network:
+### How It Works
 
-```bash
-./serve-public.sh  # Accessible at http://YOUR-IP:8080
+1. **Changes in Annie repo** → Triggers webhook/repository dispatch
+2. **GitHub Action runs** → Pulls latest docs, examples, and API references
+3. **Documentation updates** → Rebuilds and redeploys annie.io
+4. **Site goes live** → Updates visible within minutes
+
+### What Gets Synced
+
+- 📚 **API documentation** from Rust/Python docstrings
+- 📖 **Examples** from `/examples` directory
+- 📝 **README** content and project guides
+- 🔢 **Version information** from Cargo.toml
+- 📋 **Documentation** from main repo's `/docs` folder
+
+### Setup Auto-Sync
+
+To enable automatic syncing, see the complete guide: [**docs-management/AUTO-SYNC-SETUP.md**](docs-management/AUTO-SYNC-SETUP.md)
+
+This involves:
+
+1. Adding a workflow to your main Annie repository
+2. Creating a GitHub personal access token
+3. Configuring the token as a repository secret
+
+---
+
+## 🌐 Deploy to annie.io
+
+### Quick Deployment
+
+The easiest way to deploy your documentation to `https://annie.io`:
+
+#### 1. **Configure GitHub Pages**
+
+- Repository **Settings** → **Pages**
+- Source: **GitHub Actions**
+- Custom domain: `annie.io`
+- Enforce HTTPS: ✅
+
+#### 2. **Update DNS Records**
+
+At your domain registrar, add these A records:
+
+```dns
+Type: A     Name: @    Value: 185.199.108.153
+Type: A     Name: @    Value: 185.199.109.153
+Type: A     Name: @    Value: 185.199.110.153
+Type: A     Name: @    Value: 185.199.111.153
+Type: CNAME Name: www  Value: programmers-paradise.github.io
 ```
 
-### 🌍 Temporary Public URL
-
-Create instant public access:
+#### 3. **Deploy**
 
 ```bash
-./tunnel.sh  # Creates https://xyz.ngrok.io (requires ngrok)
+git push origin main  # Triggers automatic deployment
 ```
 
-### 🚀 Production Deployment
+### Complete Deployment Guide
 
-Choose your hosting platform:
+For detailed instructions including Netlify, Vercel, and troubleshooting:  
+👉 **[docs-management/ANNIE-IO-DEPLOYMENT.md](docs-management/ANNIE-IO-DEPLOYMENT.md)**
 
-| Platform | Setup | Features |
-|----------|-------|----------|
-| **GitHub Pages** | Push to `main` branch | ✅ Free, Auto-deploy, Custom domains |
-| **Netlify** | Connect repository | ✅ Instant previews, Forms, Edge functions |
-| **Vercel** | Import from GitHub | ✅ Fast CDN, Serverless, Analytics |
+### Alternative Hosting Options
 
-**Automatic deployment** is configured via GitHub Actions - just push your changes!
+- **Netlify**: One-click deploy with `configs/netlify.toml`
+- **Vercel**: Fast edge deployment with `configs/vercel.json`
+- **Custom server**: Deploy `site/` directory contents
 
 ---
 
 ## 🤝 Contributing
 
-We love contributions! Here's how to get started:
-
-### 🚀 Quick Contribution
+### Quick Contribution
 
 1. **Fork** this repository
-2. **Clone** your fork: `git clone YOUR-FORK-URL`
-3. **Setup** environment: `./build-docs.sh`
-4. **Edit** files in the `docs/` directory
-5. **Test** locally: `mkdocs serve`
+2. **Clone** your fork locally
+3. **Create** a feature branch
+4. **Edit** documentation in `docs/` directory
+5. **Test** with `mkdocs serve`
 6. **Submit** a pull request
 
-### 📝 What You Can Contribute
-
-| Type | Examples | Impact |
-|------|----------|---------|
-| 🐛 **Bug Fixes** | Typos, broken links, formatting | High |
-| � **Content** | New examples, clarifications | High |
-| ✨ **Features** | New sections, improved navigation | Medium |
-| 🎨 **Design** | Better styling, mobile optimization | Medium |
-
-**Read our [Contributing Guide](CONTRIBUTING.md)** for detailed instructions and coding standards.
-
----
-
-## 🏗️ Technical Stack
-
-### Built With
-
-- **[MkDocs](https://www.mkdocs.org/)** - Static site generator
-- **[ReadTheDocs Theme](https://github.com/readthedocs/sphinx_rtd_theme)** - Professional documentation theme  
-- **[Python Markdown](https://python-markdown.github.io/)** - Content processing
-- **[GitHub Actions](https://github.com/features/actions)** - Continuous deployment
-
-### Requirements
-
-- **Python** 3.8+
-- **MkDocs** 1.5+
-- **Modern Browser** (Chrome 90+, Firefox 88+, Safari 14+)
-
-### Project Health
-
-- ✅ **Build Status**: Passing
-- ✅ **Tests**: All green  
-- ✅ **Documentation**: 95% coverage
-- ✅ **Performance**: < 2s load time
-- ✅ **Mobile**: Fully responsive
-
----
-
-## 📊 Repository Stats
-
-| Metric | Value |
-|--------|-------|
-| **Documentation Pages** | 15+ |
-| **Code Examples** | 50+ |
-| **API Methods Documented** | 100% |
-| **Build Time** | ~30 seconds |
-| **Site Size** | < 5MB |
-
----
-
-## 🔧 Maintenance & Support
-
-### 🆘 Getting Help
-
-| Issue Type | Where to Go |
-|------------|-------------|
-| 🐛 **Bugs in Documentation** | [Create Issue](https://github.com/Programmers-Paradise/Annie-Docs/issues) |
-| ❓ **Usage Questions** | [GitHub Discussions](https://github.com/Programmers-Paradise/Annie-Docs/discussions) |
-| 💡 **Feature Requests** | [Feature Request](https://github.com/Programmers-Paradise/Annie-Docs/issues/new) |
-| � **Annie Library Issues** | [Main Repository](https://github.com/Programmers-Paradise/Annie/issues) |
-
-### 🔄 Update Schedule
-
-- **Content Updates**: As needed
-- **Dependency Updates**: Monthly
-- **Security Patches**: Immediate
-- **Theme Updates**: Quarterly
+For detailed guidelines, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ---
 
 ## 📄 License
 
-This documentation is licensed under the **MIT License** - see [LICENSE](LICENSE) for details.
-
-### Usage Rights
-
-- ✅ **Commercial use**
-- ✅ **Modification** 
-- ✅ **Distribution**
-- ✅ **Private use**
+This documentation repository is licensed under the **MIT License**.
 
 ---
 
-## 🌟 Star History
+## 🆘 Support & Help
 
-If you find this documentation helpful, please consider starring the repository!
-
-[![Star History Chart](https://api.star-history.com/svg?repos=Programmers-Paradise/Annie-Docs&type=Date)](https://star-history.com/#Programmers-Paradise/Annie-Docs&Date)
-
----
-
-## 🙏 Acknowledgments
-
-- 🦀 **Rust Community** - For the amazing language
-- 🐍 **Python Community** - For the ecosystem
-- 📖 **MkDocs Team** - For the excellent documentation tool
-- � **ReadTheDocs** - For the beautiful theme
-- 👥 **Contributors** - For making this project better
+| Issue Type               | Where to Go                                                                          |
+| ------------------------ | ------------------------------------------------------------------------------------ |
+| **Documentation bugs**   | [Create Issue](https://github.com/Programmers-Paradise/Annie-Docs/issues)            |
+| **Usage questions**      | [GitHub Discussions](https://github.com/Programmers-Paradise/Annie-Docs/discussions) |
+| **Annie library issues** | [Main Repository](https://github.com/Programmers-Paradise/Annie/issues)              |
 
 ---
 
 <div align="center">
 
-**[📖 Read the Docs](https://annie.io)** • **[🚀 Get Started](https://annie.io/#installation)** • **[🤝 Contribute](CONTRIBUTING.md)**
+**[📖 Visit annie.io](https://annie.io)** • **[🚀 Get Started](https://annie.io/#installation)** • **[🤝 Contribute](CONTRIBUTING.md)**
 
-Made with ❤️ by the Annie team
+---
+
+_Powered by MkDocs • Hosted on GitHub Pages • Made with ❤️ by the Annie team_
 
 </div>

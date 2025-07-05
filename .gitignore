@@ -1,14 +1,11 @@
-# Jekyll files
-_site
-.sass-cache
-.jekyll-cache
-.jekyll-metadata
-vendor
-
 # Python virtual environment
 venv/
+__pycache__/
+*.pyc
+*.pyo
 
-# MkDocs build temp files
+# MkDocs build files
+site/
 *.tmp
 
 # OS generated files
@@ -19,3 +16,12 @@ venv/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary sync files
+annie-source/
