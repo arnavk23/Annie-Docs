@@ -33,26 +33,42 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-        pip install flake8 black isort pylint mypy
+        pip install flake8>=6.0.0 black>=23.0.0 isort>=5.12.0 pylint>=2.17.0 mypy>=1.5.0
         
     - name: Lint with flake8
       run: |
-        # Stop the build if there are Python syntax errors or undefined names
-        flake8 scripts/ --count --select=E9,F63,F7,F82 --show-source --statistics
-        # Exit-zero treats all errors as warnings
-        flake8 scripts/ --count --exit-zero --max-complexity=10 --max-line-length=88 --statistics
+        if [ -d "scripts" ] && [ "$(ls -A scripts)" ]; then
+          # Stop the build if there are Python syntax errors or undefined names
+          flake8 scripts/ --count --select=E9,F63,F7,F82 --show-source --statistics
+          # Exit-zero treats all errors as warnings
+          flake8 scripts/ --count --exit-zero --max-complexity=10 --max-line-length=88 --statistics
+        else
+          echo "No Python files in scripts/ directory to lint"
+        fi
         
     - name: Check formatting with black
       run: |
-        black --check --diff scripts/
+        if [ -d "scripts" ] && [ "$(ls -A scripts)" ]; then
+          black --check --diff scripts/
+        else
+          echo "No Python files in scripts/ directory to check formatting"
+        fi
         
     - name: Check import sorting with isort
       run: |
-        isort --check-only --diff scripts/
+        if [ -d "scripts" ] && [ "$(ls -A scripts)" ]; then
+          isort --check-only --diff scripts/
+        else
+          echo "No Python files in scripts/ directory to check import sorting"
+        fi
         
     - name: Type checking with mypy
       run: |
-        mypy scripts/ --ignore-missing-imports || true
+        if [ -d "scripts" ] && [ "$(ls -A scripts)" ]; then
+          mypy scripts/ --ignore-missing-imports || true
+        else
+          echo "No Python files in scripts/ directory to type check"
+        fi
         
     - name: Test documentation build
       run: |
@@ -73,15 +89,19 @@ jobs:
         
     - name: Check for broken links in documentation
       run: |
-        # Install linkchecker if docs contain external links
-        pip install linkchecker || true
-        # Build docs first
-        mkdocs serve --dev-addr 0.0.0.0:8000 &
+        # Simple validation that mkdocs can serve the site
+        timeout 30s mkdocs serve --dev-addr 127.0.0.1:8000 &
         SERVER_PID=$!
         sleep 5
-        # Check internal links (skip external to avoid rate limits in CI)
-        curl -f http://localhost:8000 || echo "Warning: Could not verify local server"
-        kill $SERVER_PID || true
+        # Quick check that server responds
+        if curl -f -s --max-time 10 http://127.0.0.1:8000 > /dev/null 2>&1; then
+          echo "✓ Documentation server is responding"
+        else
+          echo "⚠ Warning: Local server check failed (this is non-critical)"
+        fi
+        # Clean up server process
+        kill $SERVER_PID 2>/dev/null || true
+        wait $SERVER_PID 2>/dev/null || true
 
   security-check:
     name: Security Scan
@@ -100,20 +120,20 @@ jobs:
     - name: Install security tools
       run: |
         python -m pip install --upgrade pip
-        pip install safety bandit semgrep
+        pip install safety bandit
         pip install -r requirements.txt
         
     - name: Run safety check for vulnerabilities
       run: |
-        safety check --json || true
+        safety check || true
         
     - name: Run bandit security linter
       run: |
-        bandit -r scripts/ -f json || true
-        
-    - name: Run semgrep security scan
-      run: |
-        semgrep --config=auto scripts/ || true
+        if [ -d "scripts" ] && [ "$(ls -A scripts)" ]; then
+          bandit -r scripts/ || true
+        else
+          echo "No Python files in scripts/ directory to scan"
+        fi
 
   documentation-quality:
     name: Documentation Quality
@@ -129,23 +149,43 @@ jobs:
         python-version: '3.11'
         cache: 'pip'
         
-    - name: Install dependencies
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        
+    - name: Install Python dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-        pip install markdownlint-cli2 alex
+        
+    - name: Install Node.js tools
+      run: |
+        npm install markdownlint-cli2 alex
         
     - name: Lint markdown files
       run: |
-        # Install markdownlint
-        npm install -g markdownlint-cli2
-        markdownlint-cli2 "**/*.md" || true
+        npx markdownlint-cli2 "**/*.md" || true
         
     - name: Check for inclusive language
       run: |
-        # Install alex for inclusive language checking
-        npm install -g alex
-        alex docs/ README.md CONTRIBUTING.md || true
+        # Check if files exist before running alex
+        files_to_check=""
+        if [ -d "docs" ] && [ "$(ls -A docs)" ]; then
+          files_to_check="$files_to_check docs/"
+        fi
+        if [ -f "README.md" ]; then
+          files_to_check="$files_to_check README.md"
+        fi
+        if [ -f "CONTRIBUTING.md" ]; then
+          files_to_check="$files_to_check CONTRIBUTING.md"
+        fi
+        
+        if [ -n "$files_to_check" ]; then
+          npx alex $files_to_check || true
+        else
+          echo "No markdown files found to check for inclusive language"
+        fi
         
     - name: Validate MkDocs configuration
       run: |

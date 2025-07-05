@@ -65,8 +65,11 @@ jobs:
       - name: Sync examples
         run: |
           # Copy examples from main repository
-          if [ -d "annie-source/examples" ]; then
-            cp -r annie-source/examples/* docs/examples/ 2>/dev/null || true
+          if [ -d "annie-source/examples" ] && [ "$(ls -A annie-source/examples)" ]; then
+            mkdir -p docs/examples
+            cp -r annie-source/examples/* docs/examples/ 2>/dev/null || echo "Warning: Some example files could not be copied"
+          else
+            echo "No examples directory found in source repository"
           fi
 
       - name: Sync README and guides
