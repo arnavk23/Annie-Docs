@@ -29,6 +29,10 @@ markdown_extensions:
 plugins:
   - search
 
+# Copy extra files to site directory
+extra:
+  generator: false
+
 # Directory where the documentation source files are located
 docs_dir: docs
 
