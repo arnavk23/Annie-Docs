@@ -10,13 +10,17 @@ Blazingly fast Approximate Nearest Neighbors in Rust
 
 
 
+
 ```bash
 # Stable release from PyPI:
 pip install rust-annie
 
-# Or install from source (requires Rust toolchain + maturin):
-git clone https://github.com/yourusername/rust_annie.git
-cd rust_annie
+# Install with GPU support (requires CUDA):
+pip install rust-annie[gpu]
+
+# Or install from source:
+git clone https://github.com/Programmers-Paradise/Annie.git
+cd Annie
 pip install maturin
 maturin develop --release
 ```
@@ -29,22 +33,23 @@ maturin develop --release
 
 
 
+
+### Brute-Force Index
 ```python
 import numpy as np
 from rust_annie import AnnIndex, Distance
 
-# Create an 8-dim Euclidean index
-idx = AnnIndex(8, Distance.EUCLIDEAN)
+# Create index
+index = AnnIndex(128, Distance.EUCLIDEAN)
 
-# Add 100 random vectors
-data = np.random.rand(100, 8).astype(np.float32)
-ids  = np.arange(100, dtype=np.int64)
-idx.add(data, ids)
+# Add data
+data = np.random.rand(1000, 128).astype(np.float32)
+ids = np.arange(1000, dtype=np.int64)
+index.add(data, ids)
 
-# Query one vector
-labels, dists = idx.search(data[0], k=5)
-print("Nearest IDs:", labels)
-print("Distances :", dists)
+# Search
+query = np.random.rand(128).astype(np.float32)
+neighbor_ids, distances = index.search(query, k=5)
 ```
 
 ## Key Features
@@ -55,13 +60,19 @@ print("Distances :", dists)
 
 
 
-- **Ultra-fast brute-force** k-NN search (Euclidean, Cosine, Manhattan, Chebyshev)  
-- **Batch** queries over multiple vectors  
-- **Thread-safe** wrapper with GIL release for true concurrency  
-- **Zero-copy** NumPy integration (via PyO3 & rust-numpy)  
-- **On-disk** persistence with bincode + serde  
-- **Multi-platform** wheels (manylinux, musllinux, Windows, macOS)  
-- **Automated CI** with correctness & performance checks
+
+- **Multiple Backends**:
+  - **Brute-force** (exact) with SIMD acceleration
+  - **HNSW** (approximate) for large-scale datasets
+- **Multiple Distance Metrics**: Euclidean, Cosine, Manhattan, Chebyshev
+- **Batch Queries** for efficient processing
+- **Thread-safe** indexes with concurrent access
+- **Zero-copy** NumPy integration
+- **On-disk Persistence** with serialization
+- **Filtered Search** with custom Python callbacks
+- **GPU Acceleration** for brute-force calculations
+- **Multi-platform** support (Linux, Windows, macOS)
+- **Automated CI** with performance tracking
 
 ## Navigation
 
