@@ -1,8 +1,8 @@
-# 🧠 GitHub Copilot Instructions for `Annie-Docs`
+# GitHub Copilot Instructions for `Annie-Docs`
 
 This project uses **GitHub Copilot Workspace** with an **MCP (Model Context Protocol)** configuration to enable intelligent automation and assistance.
 
-## 🚀 What Can Copilot Do Here?
+## What Can Copilot Do Here?
 
 Copilot has access to key project context and can:
 
@@ -14,7 +14,7 @@ Copilot has access to key project context and can:
 
 ---
 
-## 🗂️ Context Copilot Uses
+## Context Copilot Uses
 
 Copilot reads context from:
 
