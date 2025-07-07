@@ -1,0 +1,29 @@
+{
+  "$schema": "https://mcp.openai.com/schema/v1.json",
+  "version": 1,
+  "tools": [
+    {
+      "name": "GitHub Pull Request Generator",
+      "description": "Generates and opens pull requests with proposed changes to the repository.",
+      "api": {
+        "type": "openapi",
+        "url": "https://raw.githubusercontent.com/github/rest-api-description/main/descriptions/api.github.com/api.github.com.json"
+      },
+      "authentication": {
+        "type": "oauth2",
+        "authorizationUrl": "https://github.com/login/oauth/authorize",
+        "tokenUrl": "https://github.com/login/oauth/access_token",
+        "scopes": ["repo", "write:discussion"]
+      }
+    }
+  ],
+  "context": {
+    "git": {
+      "repositoryUrl": "https://github.com/Programmers-Paradise/Annie-Docs"
+    },
+    "files": {
+      "include": ["docs/**/*.md", "README.md", "CONTRIBUTING.md"],
+      "exclude": ["node_modules/", "dist/", "**/*.lock"]
+    }
+  }
+}
