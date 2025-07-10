@@ -13,15 +13,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Start static server
+      - name: Serve site (static)
         run: |
           python3 -m http.server 8080 &
-          sleep 5
+          sleep 3
 
-      - name: Run Lighthouse CI
+      - name: Run Lighthouse CI with Docker
         run: |
           docker run --rm \
             -v ${{ github.workspace }}:/repo \
             -w /repo \
-            docker.io/lighthouseci/lighthouse-ci:latest \
+            treosh/lhci:latest \
             lhci autorun --collect.url=http://localhost:8080
