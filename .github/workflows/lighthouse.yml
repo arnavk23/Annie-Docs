@@ -1,27 +1,25 @@
-name: Lighthouse CI (no npm)
+name: Lighthouse CI
 
 on:
-  pull_request:
   push:
     branches: [main]
+  pull_request:
 
 jobs:
   lighthouse:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: Download Lighthouse CI binary
-        run: |
-          curl -L https://github.com/GoogleChrome/lighthouse-ci/releases/download/v0.11.1/lhci-linux-x64.tar.gz | tar xz
-          chmod +x ./lhci-linux-x64/cli.js
-
-      - name: Start a local server (adjust to your static site)
+      - name: Start local server (your static site must support this)
         run: |
           python3 -m http.server 8080 &
           sleep 5
 
       - name: Run Lighthouse CI
         run: |
-          node ./lhci-linux-x64/cli.js autorun --collect.url=http://localhost:8080
+          docker run --rm -v ${{ github.workspace }}:/repo -w /repo \
+            treosh/lighthouse-ci:0.11.1 \
+            autorun --collect.url=http://localhost:8080
