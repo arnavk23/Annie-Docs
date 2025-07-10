@@ -1,5 +1,4 @@
-# .github/workflows/lighthouse.yml
-name: Lighthouse CI
+name: Lighthouse CI (no npm)
 
 on:
   pull_request:
@@ -11,22 +10,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
+      - name: Download Lighthouse CI binary
+        run: |
+          curl -L https://github.com/GoogleChrome/lighthouse-ci/releases/download/v0.11.1/lhci-linux-x64.tar.gz | tar xz
+          chmod +x ./lhci-linux-x64/cli.js
 
-      - name: Install dependencies (non-lockfile)
-        run: npm install
-
-      - name: Build docs
-        run: npm run build
-
-      - name: Install Lighthouse CI
-        run: npm install -g @lhci/cli@0.12.x
+      - name: Start a local server (adjust to your static site)
+        run: |
+          python3 -m http.server 8080 &
+          sleep 5
 
       - name: Run Lighthouse CI
-        run: lhci autorun
+        run: |
+          node ./lhci-linux-x64/cli.js autorun --collect.url=http://localhost:8080
