@@ -13,7 +13,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Start static site server
+      - name: Start static server
         run: |
           python3 -m http.server 8080 &
           sleep 5
@@ -23,5 +23,5 @@ jobs:
           docker run --rm \
             -v ${{ github.workspace }}:/repo \
             -w /repo \
-            ghcr.io/googlechrome/lighthouse-ci:latest \
+            docker.io/lighthouseci/lighthouse-ci:latest \
             lhci autorun --collect.url=http://localhost:8080
