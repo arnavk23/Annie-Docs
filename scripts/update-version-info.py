@@ -54,7 +54,7 @@ def main():
     # Files to update
     files_to_update = [
         "mkdocs.yml",
-        "docs/index.md", 
+        "docs/index.md",
         "README.md",
         "netlify.toml",
     ]
