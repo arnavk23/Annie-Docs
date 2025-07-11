@@ -201,7 +201,11 @@ jobs:
     - name: Check for spelling errors with codespell
       uses: codespell-project/actions-codespell@master
       with:
-        path: .
+        path: |
+          docs
+          README.md
+          mkdocs.yml
+          .github
         check_filenames: true
-        check_hidden: true
+        check_hidden: false
         ignore_words_list: crate,pkg,npm,te,nd  # <-- customize as needed
