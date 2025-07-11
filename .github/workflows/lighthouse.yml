@@ -1,0 +1,40 @@
+name: Lighthouse CI
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  push:
+    branches: [main, master]
+
+jobs:
+  lighthouse:
+    name: Lighthouse CI on Netlify Preview
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Wait for Netlify deploy preview
+        uses: jakepartusch/wait-for-netlify-action@v1
+        id: waitForNetlify
+        with:
+          site_name: annie-docs
+          max_timeout: 300
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Lighthouse CI
+        run: npm install -g @lhci/cli
+
+      - name: Run Lighthouse CI
+        env:
+          LHCI_BUILD_CONTEXT__CURRENT_BRANCH: ${{ github.head_ref || github.ref_name }}
+          LHCI_BUILD_CONTEXT__COMMIT_MESSAGE: ${{ github.event.head_commit.message || github.event.pull_request.title }}
+          LHCI_BUILD_CONTEXT__AUTHOR: ${{ github.actor }}
+        run: |
+          echo "Netlify preview URL: ${{ steps.waitForNetlify.outputs.url }}"
+          lhci autorun --collect.url="${{ steps.waitForNetlify.outputs.url }}"
