@@ -44,3 +44,6 @@ six==1.17.0
     # via python-dateutil
 watchdog==6.0.0
     # via mkdocs
+pymdown-extensions
+
+mkdocs-material
