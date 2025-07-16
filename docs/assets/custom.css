@@ -1,0 +1,9 @@
+/* Custom Annie Branding */
+.md-header, .md-footer {
+  background-color: #4B0082; /* Annie's deep purple */
+}
+
+:root {
+  --md-primary-fg-color: #4B0082;
+  --md-accent-fg-color: #FFC107;
+}
