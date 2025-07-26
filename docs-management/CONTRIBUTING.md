@@ -59,7 +59,18 @@ docs/
 ```
 
 
-## Documentation Standards and Templates
+
+## Analytics, Feedback, and User Insights
+
+To continuously improve our documentation, we use privacy-friendly analytics and feedback tools:
+
+- **Page Analytics:** We use Plausible to track page views, search queries, and user journeys (no personal data collected).
+- **Page Rating:** Every page includes a “Was this helpful?” widget.
+- **Feedback Form:** Users can submit suggestions for improvement directly from any page.
+- **Search Analytics:** Search queries are tracked to identify content gaps.
+- **A/B Testing & Effectiveness:** We use analytics to test improvements and measure documentation effectiveness.
+
+For details, see [Analytics, Feedback, and User Insights Guide](ANALYTICS-GUIDE.md).
 
 Please follow these resources for all documentation contributions:
 
