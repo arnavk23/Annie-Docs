@@ -7,9 +7,6 @@ edit_uri: edit/main/docs/
 
 
 theme:
-# Add analytics and feedback widgets
-extra_javascript:
-  - assets/analytics.js
   name: material
   logo: assets/logo.png  
   favicon: assets/favicon.ico
@@ -37,15 +34,15 @@ extra_javascript:
       toggle:
         icon: material/weather-night
         name: Switch to dark mode
+
     - scheme: slate
-      primary: deep purple
-      accent: amber
-      toggle:
-        icon: material/weather-sunny
-        name: Switch to light mode
   font:
     text: Inter
     code: Fira Code
+
+# Add analytics and feedback widgets
+extra_javascript:
+  - assets/analytics.js
 
 nav:
   - Home: index.md
