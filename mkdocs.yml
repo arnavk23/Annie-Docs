@@ -46,13 +46,15 @@ extra_javascript:
 
 nav:
   - Home: index.md
+  - FAQ: faq.md
+  - Troubleshooting: troubleshooting.md
   - API Reference:
-    - AnnIndex: api/ann_index.md
-    - PyHnswIndex: api/hnsw_index.md
-    - ThreadSafeAnnIndex: api/threadsafe_index.md
+      - AnnIndex: api/ann_index.md
+      - PyHnswIndex: api/hnsw_index.md
+      - ThreadSafeAnnIndex: api/threadsafe_index.md
   - Features:
-    - Concurrency: concurrency.md
-    - Filtered Search: filtering.md
+      - Concurrency: concurrency.md
+      - Filtered Search: filtering.md
   - Examples: examples.md
   - Contributing: contributing.md
 
