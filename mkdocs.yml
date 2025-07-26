@@ -7,6 +7,9 @@ edit_uri: edit/main/docs/
 
 
 theme:
+# Add analytics and feedback widgets
+extra_javascript:
+  - assets/analytics.js
   name: material
   logo: assets/logo.png  
   favicon: assets/favicon.ico
