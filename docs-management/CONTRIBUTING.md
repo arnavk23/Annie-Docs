@@ -2,6 +2,7 @@
 
 Thank you for your interest in contributing to Annie's documentation! This guide will help you get started with contributing to our documentation site.
 
+
 ## Table of Contents
 
 - [Getting Started](#getting-started)
@@ -9,6 +10,7 @@ Thank you for your interest in contributing to Annie's documentation! This guide
 - [Setting Up Development Environment](#setting-up-development-environment)
 - [Making Changes](#making-changes)
 - [Writing Guidelines](#writing-guidelines)
+- [Documentation Standards and Templates](#documentation-standards-and-templates)
 - [Submitting Changes](#submitting-changes)
 - [Review Process](#review-process)
 
@@ -56,7 +58,21 @@ docs/
 └── filtering.md          # Filtered search
 ```
 
-## Setting Up Development Environment
+
+## Documentation Standards and Templates
+
+Please follow these resources for all documentation contributions:
+
+- [Documentation Style Guide](DOCUMENTATION-STYLE-GUIDE.md): Formatting, structure, and tone standards.
+- [Writing Guidelines](WRITING-GUIDELINES.md): Steps and best practices for writing docs.
+- [Screenshot and Image Guidelines](SCREENSHOT-GUIDELINES.md): How to add and format images.
+- [Accessibility Guidelines](ACCESSIBILITY-GUIDELINES.md): Ensure docs are usable by everyone.
+- [Review Checklist](REVIEW-CHECKLIST.md): Use before submitting docs for review.
+- [Content Lifecycle](CONTENT-LIFECYCLE.md): How docs are planned, reviewed, and maintained.
+- [Maintenance Procedures](MAINTENANCE-PROCEDURES.md): Keeping docs up-to-date.
+- [New Doc Template](TEMPLATE-NEW-DOC.md) and [Update Template](TEMPLATE-DOC-UPDATE.md): For new or updated docs.
+
+Refer to these guides and templates to ensure your contributions meet project standards.
 
 ### Manual Setup
 
@@ -94,17 +110,19 @@ mkdocs serve --dev-addr=0.0.0.0:8000
 3. **New Documentation**: New features, API additions
 4. **Structure Improvements**: Navigation, organization, user experience
 
+
 ### Workflow
 
 1. **Create a Branch**
    ```bash
-   git checkout -b feature/improve-examples
+   git checkout -b feature/your-branch-name
    ```
 
 2. **Make Your Changes**
    - Edit files in the `docs/` directory
    - Use Markdown syntax
-   - Follow our writing guidelines
+   - Follow the [Documentation Style Guide](DOCUMENTATION-STYLE-GUIDE.md) and [Writing Guidelines](WRITING-GUIDELINES.md)
+   - Use the [New Doc Template](TEMPLATE-NEW-DOC.md) or [Update Template](TEMPLATE-DOC-UPDATE.md) as appropriate
 
 3. **Test Locally**
    ```bash
@@ -118,61 +136,13 @@ mkdocs serve --dev-addr=0.0.0.0:8000
    ```
    Ensure no build errors
 
+
 ## Writing Guidelines
 
-### Markdown Standards
-
-- Use `#` for main headings, `##` for sections, `###` for subsections
-- Use code blocks with language specification:
-  ```python
-  # Good
-  import numpy as np
-  ```
-- Use `**bold**` for emphasis, `*italic*` for secondary emphasis
-- Use backticks for `inline code` and class names like `AnnIndex`
-
-### Code Examples
-
-- **Complete Examples**: Show full working code
-- **Clear Comments**: Explain what each section does
-- **Realistic Data**: Use meaningful variable names and realistic scenarios
-- **Error Handling**: Include error handling where appropriate
-
-```python
-# Good example
-import numpy as np
-from rust_annie import AnnIndex, Distance
-
-# Create index for 128-dimensional vectors
-index = AnnIndex(128, Distance.EUCLIDEAN)
-
-# Add sample data
-data = np.random.rand(1000, 128).astype(np.float32)
-ids = np.arange(1000, dtype=np.int64)
-index.add(data, ids)
-
-# Search for nearest neighbors
-query = np.random.rand(128).astype(np.float32)
-neighbor_ids, distances = index.search(query, k=5)
-print(f"Found {len(neighbor_ids)} neighbors")
-```
-
-### API Documentation
-
-- **Class Descriptions**: Clear purpose and use cases
-- **Parameter Details**: Type, description, constraints
-- **Return Values**: What the method returns
-- **Examples**: Show typical usage
-- **Error Conditions**: When methods might fail
-
-### Writing Style
-
-- **Clear and Concise**: Get to the point quickly
-- **Beginner-Friendly**: Explain concepts that might be unfamiliar
-- **Consistent Terminology**: Use the same terms throughout
-- **Active Voice**: "Create an index" vs "An index is created"
+See [Writing Guidelines](WRITING-GUIDELINES.md) and [Documentation Style Guide](DOCUMENTATION-STYLE-GUIDE.md) for detailed standards, formatting, and examples. For screenshots and images, see [Screenshot and Image Guidelines](SCREENSHOT-GUIDELINES.md). For accessibility, see [Accessibility Guidelines](ACCESSIBILITY-GUIDELINES.md).
 
 ## Submitting Changes
+
 
 ### Before Submitting
 
@@ -190,6 +160,8 @@ print(f"Found {len(neighbor_ids)} neighbors")
    - Proofread for typos and grammar
    - Ensure code examples work
    - Check formatting consistency
+   - Complete the [Review Checklist](REVIEW-CHECKLIST.md)
+   - Ensure accessibility and image guidelines are followed
 
 ### Creating a Pull Request
 
@@ -232,27 +204,23 @@ Brief description of changes made.
 Add screenshots of significant visual changes.
 ```
 
+
 ## Review Process
 
-### What We Look For
+All documentation changes are reviewed for:
 
 1. **Accuracy**: Information is correct and up-to-date
 2. **Clarity**: Content is easy to understand
 3. **Completeness**: Examples work and are comprehensive
-4. **Consistency**: Follows existing style and structure
-5. **Value**: Genuinely helpful to users
+4. **Consistency**: Follows [Documentation Style Guide](DOCUMENTATION-STYLE-GUIDE.md)
+5. **Accessibility**: Follows [Accessibility Guidelines](ACCESSIBILITY-GUIDELINES.md)
+6. **Value**: Genuinely helpful to users
 
-### Review Timeline
+Use the [Review Checklist](REVIEW-CHECKLIST.md) before submitting.
 
-- **Initial Review**: Within 2-3 days
-- **Feedback**: We'll provide specific suggestions
-- **Approval**: Once all feedback is addressed
+---
 
-### After Approval
-
-- Changes are merged to `main` branch
-- Documentation is automatically deployed
-- Your contribution is credited
+For more on the documentation lifecycle and maintenance, see [Content Lifecycle](CONTENT-LIFECYCLE.md) and [Maintenance Procedures](MAINTENANCE-PROCEDURES.md).
 
 ## Issue Labels
 
