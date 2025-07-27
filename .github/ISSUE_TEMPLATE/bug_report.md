@@ -6,6 +6,9 @@ labels: bug
 assignees: ''
 ---
 
+
+**Before submitting, please check the [FAQ](../../docs/faq.md) and [Troubleshooting Guide](../../docs/troubleshooting.md) for solutions to common problems.**
+
 **Describe the bug**
 A clear and concise description of what the bug is.
 
@@ -24,5 +27,12 @@ A clear and concise description of what you expected to happen.
 - Hardware (e.g., GPU/CPU):
 - Branch/Commit:
 
+
 **Additional context**
 Add any other context or screenshots.
+
+---
+
+**Checklist**
+- [ ] I have checked the [FAQ](../../docs/faq.md) and [Troubleshooting Guide](../../docs/troubleshooting.md) and my issue is not listed.
+- [ ] I have provided all necessary information above.

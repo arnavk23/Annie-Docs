@@ -1,0 +1,48 @@
+name: Documentation Link and Size Check
+
+on:
+  pull_request:
+    branches: [ main, master ]
+  push:
+    branches: [ main, master ]
+
+jobs:
+  link-and-size-check:
+    name: Link and Size Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Build documentation
+        run: |
+          mkdocs build --clean
+
+      - name: Check documentation size
+        run: |
+          du -sh site/
+          du -sh site/ > site-size.txt
+
+      - name: Check all Markdown links (internal & external)
+        uses: lycheeverse/lychee-action@v1.10.0
+        with:
+          args: --verbose --no-progress --exclude-mail --require-https --timeout 15 --max-concurrency 10 '**/*.md' 'site/**/*.html'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload site size report
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-size
+          path: site-size.txt
