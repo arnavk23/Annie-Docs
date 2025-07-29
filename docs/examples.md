@@ -15,32 +15,64 @@
 9. [Documentation](#documentation)
 10. [Contributing](#contributing)  
 11. [License](#license)
+
 # Annie Examples
 
+> **Interactive Examples:**
+> 
+> You can now run selected code blocks directly in your browser! Click the <kbd>Try it</kbd> button above a code block to execute it. Use sliders to adjust parameters like vector dimension or dataset size. Powered by Pyodide (Python in the browser). [Learn more](https://pyodide.org/).
+
+
 ## Basic Usage
+<div class="interactive-block" data-interactive>
+<div class="interactive-controls">
+<label>Dimension: <input type="range" min="8" max="256" value="128" class="slider" data-var="dim" /></label>
+<span class="slider-value" data-var="dim">128</span>
+<label>Dataset size: <input type="range" min="100" max="2000" value="1000" class="slider" data-var="size" /></label>
+<span class="slider-value" data-var="size">1000</span>
+</div>
 ```python
 import numpy as np
 from rust_annie import AnnIndex, Distance
 
+dim = {{dim|128}}
+size = {{size|1000}}
+
 # Create index
-index = AnnIndex(128, Distance.EUCLIDEAN)
+index = AnnIndex(dim, Distance.EUCLIDEAN)
 
 # Generate and add data
-data = np.random.rand(1000, 128).astype(np.float32)
-ids = np.arange(1000, dtype=np.int64)
+data = np.random.rand(size, dim).astype(np.float32)
+ids = np.arange(size, dtype=np.int64)
 index.add(data, ids)
 
 # Single query
-query = np.random.rand(128).astype(np.float32)
+query = np.random.rand(dim).astype(np.float32)
 neighbor_ids, distances = index.search(query, k=5)
+print(neighbor_ids, distances)
 
 # Batch queries
-queries = np.random.rand(10, 128).astype(np.float32)
+queries = np.random.rand(10, dim).astype(np.float32)
 batch_ids, batch_dists = index.search_batch(queries, k=3)
+print(batch_ids.shape, batch_dists.shape)
 ```
+</div>
 
 ## Filtered Search
 ```python
+# Create index with sample data
+index = AnnIndex(3, Distance.EUCLIDEAN)
+data = np.array([
+    [1.0, 2.0, 3.0],
+    [4.0, 5.0, 6.0],
+    [7.0, 8.0, 9.0]
+
+## Filtered Search
+<div class="interactive-block" data-interactive>
+```python
+import numpy as np
+from rust_annie import AnnIndex, Distance
+
 # Create index with sample data
 index = AnnIndex(3, Distance.EUCLIDEAN)
 data = np.array([
@@ -58,11 +90,55 @@ def even_ids(id: int) -> bool:
 # Filtered search
 query = np.array([1.0, 2.0, 3.0], dtype=np.float32)
 filtered_ids, filtered_dists = index.search_filter_py(query, k=3, filter_fn=even_ids)
+print(filtered_ids)
+```
+</div>
+], dtype=np.float32)
+ids = np.array([10, 20, 30], dtype=np.int64)
+index.add(data, ids)
+
+# Define filter function
+def even_ids(id: int) -> bool:
+    return id % 2 == 0
+
+# Filtered search
+query = np.array([1.0, 2.0, 3.0], dtype=np.float32)
+filtered_ids, filtered_dists = index.search_filter_py(query, k=3, filter_fn=even_ids)
 # Only IDs 10 and 30 will be returned (20 is odd)
 ```
 
 ## HNSW Index
 ```python
+
+## HNSW Index
+<div class="interactive-block" data-interactive>
+<div class="interactive-controls">
+<label>Dimension: <input type="range" min="8" max="256" value="128" class="slider" data-var="dim" /></label>
+<span class="slider-value" data-var="dim">128</span>
+<label>Dataset size: <input type="range" min="1000" max="200000" value="100000" class="slider" data-var="size" /></label>
+<span class="slider-value" data-var="size">100000</span>
+</div>
+```python
+import numpy as np
+from rust_annie import PyHnswIndex
+
+dim = {{dim|128}}
+size = {{size|100000}}
+
+# Create HNSW index
+index = PyHnswIndex(dims=dim)
+
+# Add large dataset
+data = np.random.rand(size, dim).astype(np.float32)
+ids = np.arange(size, dtype=np.int64)
+index.add(data, ids)
+
+# Fast approximate search
+query = np.random.rand(dim).astype(np.float32)
+neighbor_ids, _ = index.search(query, k=10)
+print(neighbor_ids)
+```
+</div>
 from rust_annie import PyHnswIndex
 
 # Create HNSW index
