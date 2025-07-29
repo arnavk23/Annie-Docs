@@ -34,7 +34,7 @@ This guide helps you resolve common installation, build, and runtime issues with
 - See the [FAQ](faq.md#compatibility-matrix) for supported OS and Python versions.
 
 ## Migration
-- See [FAQ](faq.md#migration-guides) for tips on migrating from other ANN libraries.
+- See the FAQ below for tips on migrating from other ANN libraries.
 
 ---
 

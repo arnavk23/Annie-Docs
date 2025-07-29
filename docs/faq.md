@@ -36,7 +36,9 @@ Welcome to the Annie FAQ! Use your browser's search (Ctrl+F) to quickly find ans
 
 ## Migration
 - **How do I migrate from Faiss/Annoy/HNSW?**
-  - See [migration guide](faq.md#migration-guides).
+  - See migration guide below.
+
+  - See [migration guide](#migration-guides).
 
 ## Compatibility Matrix
 | OS           | Python 3.8 | Python 3.9 | Python 3.10 | Python 3.11 |
