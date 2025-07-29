@@ -1421,23 +1421,65 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#hnsw-index" class="md-nav__link">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#define-filter-function" class="md-nav__link">
     <span class="md-ellipsis">
-      HNSW Index
+      Define filter function
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#saving-and-loading" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#filtered-search_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Saving and Loading
+      Filtered search
     </span>
   </a>
   
 </li>
+      
+        <li class="md-nav__item">
+  <a href="#only-ids-10-and-30-will-be-returned-20-is-odd" class="md-nav__link">
+    <span class="md-ellipsis">
+      Only IDs 10 and 30 will be returned (20 is odd)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-hnsw-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create HNSW index
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add-large-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add large dataset
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fast-approximate-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fast approximate search
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fast approximate search">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#thread-safe-operations" class="md-nav__link">
@@ -1519,7 +1561,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#hnsw-index_1" class="md-nav__link">
+  <a href="#hnsw-index" class="md-nav__link">
     <span class="md-ellipsis">
       HNSW Index
     </span>
@@ -1570,7 +1612,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#filtered-search_1" class="md-nav__link">
+  <a href="#filtered-search_2" class="md-nav__link">
     <span class="md-ellipsis">
       Filtered Search
     </span>
@@ -1811,28 +1853,59 @@
 <li><a href="#license">License</a></li>
 </ol>
 <h1 id="annie-examples">Annie Examples<a class="headerlink" href="#annie-examples" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>Interactive Examples:</strong></p>
+<p>You can now run selected code blocks directly in your browser! Click the <kbd>Try it</kbd> button above a code block to execute it. Use sliders to adjust parameters like vector dimension or dataset size. Powered by Pyodide (Python in the browser). <a href="https://pyodide.org/">Learn more</a>.</p>
+</blockquote>
 <h2 id="basic-usage">Basic Usage<a class="headerlink" href="#basic-usage" title="Permanent link">&para;</a></h2>
+<div class="interactive-block" data-interactive>
+<div class="interactive-controls">
+<label>Dimension: <input type="range" min="8" max="256" value="128" class="slider" data-var="dim" /></label>
+<span class="slider-value" data-var="dim">128</span>
+<label>Dataset size: <input type="range" min="100" max="2000" value="1000" class="slider" data-var="size" /></label>
+<span class="slider-value" data-var="size">1000</span>
+</div>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">rust_annie</span><span class="w"> </span><span class="kn">import</span> <span class="n">AnnIndex</span><span class="p">,</span> <span class="n">Distance</span>
 
+<span class="n">dim</span> <span class="o">=</span> <span class="p">{{</span><span class="n">dim</span><span class="o">|</span><span class="mi">128</span><span class="p">}}</span>
+<span class="n">size</span> <span class="o">=</span> <span class="p">{{</span><span class="n">size</span><span class="o">|</span><span class="mi">1000</span><span class="p">}}</span>
+
 <span class="c1"># Create index</span>
-<span class="n">index</span> <span class="o">=</span> <span class="n">AnnIndex</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="n">Distance</span><span class="o">.</span><span class="n">EUCLIDEAN</span><span class="p">)</span>
+<span class="n">index</span> <span class="o">=</span> <span class="n">AnnIndex</span><span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="n">Distance</span><span class="o">.</span><span class="n">EUCLIDEAN</span><span class="p">)</span>
 
 <span class="c1"># Generate and add data</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
-<span class="n">ids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">dim</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">ids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
 <span class="n">index</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">ids</span><span class="p">)</span>
 
 <span class="c1"># Single query</span>
-<span class="n">query</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">query</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">dim</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
 <span class="n">neighbor_ids</span><span class="p">,</span> <span class="n">distances</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">neighbor_ids</span><span class="p">,</span> <span class="n">distances</span><span class="p">)</span>
 
 <span class="c1"># Batch queries</span>
-<span class="n">queries</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">queries</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">dim</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
 <span class="n">batch_ids</span><span class="p">,</span> <span class="n">batch_dists</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">search_batch</span><span class="p">(</span><span class="n">queries</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">batch_ids</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">batch_dists</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </code></pre></div>
+</div>
+
 <h2 id="filtered-search">Filtered Search<a class="headerlink" href="#filtered-search" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="c1"># Create index with sample data</span>
+<p><div class="highlight"><pre><span></span><code><span class="c1"># Create index with sample data</span>
+<span class="n">index</span> <span class="o">=</span> <span class="n">AnnIndex</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">Distance</span><span class="o">.</span><span class="n">EUCLIDEAN</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">7.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">]</span>
+
+<span class="c1">## Filtered Search</span>
+<span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;interactive-block&quot;</span> <span class="n">data</span><span class="o">-</span><span class="n">interactive</span><span class="o">&gt;</span>
+<span class="err">```</span><span class="n">python</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rust_annie</span><span class="w"> </span><span class="kn">import</span> <span class="n">AnnIndex</span><span class="p">,</span> <span class="n">Distance</span>
+
+<span class="c1"># Create index with sample data</span>
 <span class="n">index</span> <span class="o">=</span> <span class="n">AnnIndex</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">Distance</span><span class="o">.</span><span class="n">EUCLIDEAN</span><span class="p">)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
     <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">],</span>
@@ -1849,34 +1922,73 @@
 <span class="c1"># Filtered search</span>
 <span class="n">query</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
 <span class="n">filtered_ids</span><span class="p">,</span> <span class="n">filtered_dists</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">search_filter_py</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">filter_fn</span><span class="o">=</span><span class="n">even_ids</span><span class="p">)</span>
-<span class="c1"># Only IDs 10 and 30 will be returned (20 is odd)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">filtered_ids</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="hnsw-index">HNSW Index<a class="headerlink" href="#hnsw-index" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rust_annie</span><span class="w"> </span><span class="kn">import</span> <span class="n">PyHnswIndex</span>
+</div>
+], dtype=np.float32)
+ids = np.array([10, 20, 30], dtype=np.int64)
+index.add(data, ids)</p>
+<h1 id="define-filter-function">Define filter function<a class="headerlink" href="#define-filter-function" title="Permanent link">&para;</a></h1>
+<p>def even_ids(id: int) -&gt; bool:
+    return id % 2 == 0</p>
+<h1 id="filtered-search_1">Filtered search<a class="headerlink" href="#filtered-search_1" title="Permanent link">&para;</a></h1>
+<p>query = np.array([1.0, 2.0, 3.0], dtype=np.float32)
+filtered_ids, filtered_dists = index.search_filter_py(query, k=3, filter_fn=even_ids)</p>
+<h1 id="only-ids-10-and-30-will-be-returned-20-is-odd">Only IDs 10 and 30 will be returned (20 is odd)<a class="headerlink" href="#only-ids-10-and-30-will-be-returned-20-is-odd" title="Permanent link">&para;</a></h1>
+<p><div class="highlight"><pre><span></span><code>## HNSW Index
+```python
 
-<span class="c1"># Create HNSW index</span>
-<span class="n">index</span> <span class="o">=</span> <span class="n">PyHnswIndex</span><span class="p">(</span><span class="n">dims</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>
+## HNSW Index
+&lt;div class=&quot;interactive-block&quot; data-interactive&gt;
+&lt;div class=&quot;interactive-controls&quot;&gt;
+&lt;label&gt;Dimension: &lt;input type=&quot;range&quot; min=&quot;8&quot; max=&quot;256&quot; value=&quot;128&quot; class=&quot;slider&quot; data-var=&quot;dim&quot; /&gt;&lt;/label&gt;
+&lt;span class=&quot;slider-value&quot; data-var=&quot;dim&quot;&gt;128&lt;/span&gt;
+&lt;label&gt;Dataset size: &lt;input type=&quot;range&quot; min=&quot;1000&quot; max=&quot;200000&quot; value=&quot;100000&quot; class=&quot;slider&quot; data-var=&quot;size&quot; /&gt;&lt;/label&gt;
+&lt;span class=&quot;slider-value&quot; data-var=&quot;size&quot;&gt;100000&lt;/span&gt;
+&lt;/div&gt;
+```python
+import numpy as np
+from rust_annie import PyHnswIndex
 
-<span class="c1"># Add large dataset</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100000</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
-<span class="n">ids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">100000</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
-<span class="n">index</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">ids</span><span class="p">)</span>
+dim = {{dim|128}}
+size = {{size|100000}}
 
-<span class="c1"># Fast approximate search</span>
-<span class="n">query</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
-<span class="n">neighbor_ids</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+# Create HNSW index
+index = PyHnswIndex(dims=dim)
+
+# Add large dataset
+data = np.random.rand(size, dim).astype(np.float32)
+ids = np.arange(size, dtype=np.int64)
+index.add(data, ids)
+
+# Fast approximate search
+query = np.random.rand(dim).astype(np.float32)
+neighbor_ids, _ = index.search(query, k=10)
+print(neighbor_ids)
 </code></pre></div>
-<h2 id="saving-and-loading">Saving and Loading<a class="headerlink" href="#saving-and-loading" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="c1"># Create and save index</span>
-<span class="n">index</span> <span class="o">=</span> <span class="n">AnnIndex</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="n">Distance</span><span class="o">.</span><span class="n">COSINE</span><span class="p">)</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
-<span class="n">ids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
-<span class="n">index</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">ids</span><span class="p">)</span>
-<span class="n">index</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;my_index&quot;</span><span class="p">)</span>
+</div>
+from rust_annie import PyHnswIndex</p>
+<h1 id="create-hnsw-index">Create HNSW index<a class="headerlink" href="#create-hnsw-index" title="Permanent link">&para;</a></h1>
+<p>index = PyHnswIndex(dims=128)</p>
+<h1 id="add-large-dataset">Add large dataset<a class="headerlink" href="#add-large-dataset" title="Permanent link">&para;</a></h1>
+<p>data = np.random.rand(100000, 128).astype(np.float32)
+ids = np.arange(100000, dtype=np.int64)
+index.add(data, ids)</p>
+<h1 id="fast-approximate-search">Fast approximate search<a class="headerlink" href="#fast-approximate-search" title="Permanent link">&para;</a></h1>
+<p>query = np.random.rand(128).astype(np.float32)
+neighbor_ids, _ = index.search(query, k=10)
+<div class="highlight"><pre><span></span><code>## Saving and Loading
+```python
+# Create and save index
+index = AnnIndex(64, Distance.COSINE)
+data = np.random.rand(500, 64).astype(np.float32)
+ids = np.arange(500, dtype=np.int64)
+index.add(data, ids)
+index.save(&quot;my_index&quot;)
 
-<span class="c1"># Load index</span>
-<span class="n">loaded_index</span> <span class="o">=</span> <span class="n">AnnIndex</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;my_index&quot;</span><span class="p">)</span>
-</code></pre></div>
+# Load index
+loaded_index = AnnIndex.load(&quot;my_index&quot;)
+</code></pre></div></p>
 <h2 id="thread-safe-operations">Thread-safe Operations<a class="headerlink" href="#thread-safe-operations" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rust_annie</span><span class="w"> </span><span class="kn">import</span> <span class="n">ThreadSafeAnnIndex</span><span class="p">,</span> <span class="n">Distance</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ThreadPoolExecutor</span>
@@ -1981,7 +2093,7 @@ maturin<span class="w"> </span>develop<span class="w"> </span>--release
 <span class="n">query</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
 <span class="n">neighbor_ids</span><span class="p">,</span> <span class="n">distances</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="hnsw-index_1">HNSW Index<a class="headerlink" href="#hnsw-index_1" title="Permanent link">&para;</a></h3>
+<h3 id="hnsw-index">HNSW Index<a class="headerlink" href="#hnsw-index" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rust_annie</span><span class="w"> </span><span class="kn">import</span> <span class="n">PyHnswIndex</span>
 
 <span class="n">index</span> <span class="o">=</span> <span class="n">PyHnswIndex</span><span class="p">(</span><span class="n">dims</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>
@@ -2050,7 +2162,7 @@ maturin<span class="w"> </span>develop<span class="w"> </span>--release
     <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">futures</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">result</span><span class="p">())</span>
 </code></pre></div>
-<h3 id="filtered-search_1">Filtered Search<a class="headerlink" href="#filtered-search_1" title="Permanent link">&para;</a></h3>
+<h3 id="filtered-search_2">Filtered Search<a class="headerlink" href="#filtered-search_2" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rust_annie</span><span class="w"> </span><span class="kn">import</span> <span class="n">AnnIndex</span><span class="p">,</span> <span class="n">Distance</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
@@ -2287,6 +2399,8 @@ maturin<span class="w"> </span>develop<span class="w"> </span>--release<span cla
       <script src="../assets/javascripts/bundle.50899def.min.js"></script>
       
         <script src="../assets/analytics.js"></script>
+      
+        <script src="../assets/interactive-examples.js"></script>
       
     
   </body>
