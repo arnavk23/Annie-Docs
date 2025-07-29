@@ -46,6 +46,25 @@ extra_javascript:
 
 nav:
   - Home: index.md
+  - Tutorials:
+      - Overview: tutorials/index.md
+      - Beginner:
+          - Getting Started: tutorials/01-getting-started.md
+          - Indexing Your First Dataset: tutorials/02-indexing-basics.md
+          - Performing Your First Search: tutorials/03-basic-search.md
+          - Saving and Loading Indexes: tutorials/04-saving-loading.md
+          - Batch Operations: tutorials/05-batch-operations.md
+      - Intermediate:
+          - Using Annie in Production: tutorials/06-production-usage.md
+          - Filtering and Metadata: tutorials/07-filtering-metadata.md
+          - Debugging and Troubleshooting: tutorials/08-debugging.md
+      - Advanced:
+          - Custom Distance Metrics: tutorials/09-custom-metrics.md
+          - GPU Acceleration: tutorials/10-gpu-usage.md
+          - Performance Optimization: tutorials/11-performance.md
+      - Use Cases:
+          - Recommendation System: tutorials/usecase-recommendation.md
+          - Image Search: tutorials/usecase-image-search.md
   - FAQ: faq.md
   - Troubleshooting: troubleshooting.md
   - API Reference:
