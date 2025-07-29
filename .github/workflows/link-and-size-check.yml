@@ -1,4 +1,6 @@
 name: Documentation Link and Size Check
+permissions:
+  contents: read
 
 on:
   pull_request:
