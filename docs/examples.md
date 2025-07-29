@@ -1,3 +1,20 @@
+<!-- Benchmark Results, Development & CI, and Documentation sections are not present. -->
+
+## Table of Contents
+1. [Features](#features)  
+2. [Installation](#installation)  
+3. [Quick Start](#quick-start)  
+4. [Examples](#examples)  
+   - [Brute-Force Index](#brute-force-index)  
+   - [HNSW Index](#hnsw-index)  
+   - [Thread-Safe Index](#thread-safe-index)  
+5. [Benchmark Results](#benchmark-results)  
+6. [API Reference](#api-reference)  
+7. [Development & CI](#development--ci)  
+8. [GPU Acceleration](#gpu-acceleration)
+9. [Documentation](#documentation)
+10. [Contributing](#contributing)  
+11. [License](#license)
 # Annie Examples
 
 ## Basic Usage
@@ -403,7 +420,7 @@ Requirements:
 
 Contributions are welcome! Please:
 
-See [../docs-management/CONTRIBUTING.md](../docs-management/CONTRIBUTING.md) for details.
+See the main CONTRIBUTING guide for details.
 
 ## License
 
