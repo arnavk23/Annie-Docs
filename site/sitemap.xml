@@ -2,102 +2,102 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://annie-docs.netlify.app/</loc>
-         <lastmod>2025-08-20</lastmod>
+         <lastmod>2025-08-21</lastmod>
     </url>
     <url>
          <loc>https://annie-docs.netlify.app/benchmarks/</loc>
-         <lastmod>2025-08-20</lastmod>
+         <lastmod>2025-08-21</lastmod>
     </url>
     <url>
          <loc>https://annie-docs.netlify.app/concurrency/</loc>
-         <lastmod>2025-08-20</lastmod>
+         <lastmod>2025-08-21</lastmod>
     </url>
     <url>
          <loc>https://annie-docs.netlify.app/contributing/</loc>
-         <lastmod>2025-08-20</lastmod>
+         <lastmod>2025-08-21</lastmod>
     </url>
     <url>
          <loc>https://annie-docs.netlify.app/examples/</loc>
-         <lastmod>2025-08-20</lastmod>
+         <lastmod>2025-08-21</lastmod>
     </url>
     <url>
          <loc>https://annie-docs.netlify.app/faq/</loc>
-         <lastmod>2025-08-20</lastmod>
+         <lastmod>2025-08-21</lastmod>
     </url>
     <url>
          <loc>https://annie-docs.netlify.app/filtering/</loc>
-         <lastmod>2025-08-20</lastmod>
+         <lastmod>2025-08-21</lastmod>
     </url>
     <url>
          <loc>https://annie-docs.netlify.app/troubleshooting/</loc>
-         <lastmod>2025-08-20</lastmod>
+         <lastmod>2025-08-21</lastmod>
     </url>
     <url>
          <loc>https://annie-docs.netlify.app/api/ann_index/</loc>
-         <lastmod>2025-08-20</lastmod>
+         <lastmod>2025-08-21</lastmod>
     </url>
     <url>
          <loc>https://annie-docs.netlify.app/api/hnsw_index/</loc>
-         <lastmod>2025-08-20</lastmod>
+         <lastmod>2025-08-21</lastmod>
     </url>
     <url>
          <loc>https://annie-docs.netlify.app/api/threadsafe_index/</loc>
-         <lastmod>2025-08-20</lastmod>
+         <lastmod>2025-08-21</lastmod>
     </url>
     <url>
          <loc>https://annie-docs.netlify.app/tutorials/</loc>
-         <lastmod>2025-08-20</lastmod>
+         <lastmod>2025-08-21</lastmod>
     </url>
     <url>
          <loc>https://annie-docs.netlify.app/tutorials/01-getting-started/</loc>
-         <lastmod>2025-08-20</lastmod>
+         <lastmod>2025-08-21</lastmod>
     </url>
     <url>
          <loc>https://annie-docs.netlify.app/tutorials/02-indexing-basics/</loc>
-         <lastmod>2025-08-20</lastmod>
+         <lastmod>2025-08-21</lastmod>
     </url>
     <url>
          <loc>https://annie-docs.netlify.app/tutorials/03-basic-search/</loc>
-         <lastmod>2025-08-20</lastmod>
+         <lastmod>2025-08-21</lastmod>
     </url>
     <url>
          <loc>https://annie-docs.netlify.app/tutorials/04-saving-loading/</loc>
-         <lastmod>2025-08-20</lastmod>
+         <lastmod>2025-08-21</lastmod>
     </url>
     <url>
          <loc>https://annie-docs.netlify.app/tutorials/05-batch-operations/</loc>
-         <lastmod>2025-08-20</lastmod>
+         <lastmod>2025-08-21</lastmod>
     </url>
     <url>
          <loc>https://annie-docs.netlify.app/tutorials/06-production-usage/</loc>
-         <lastmod>2025-08-20</lastmod>
+         <lastmod>2025-08-21</lastmod>
     </url>
     <url>
          <loc>https://annie-docs.netlify.app/tutorials/07-filtering-metadata/</loc>
-         <lastmod>2025-08-20</lastmod>
+         <lastmod>2025-08-21</lastmod>
     </url>
     <url>
          <loc>https://annie-docs.netlify.app/tutorials/08-debugging/</loc>
-         <lastmod>2025-08-20</lastmod>
+         <lastmod>2025-08-21</lastmod>
     </url>
     <url>
          <loc>https://annie-docs.netlify.app/tutorials/09-custom-metrics/</loc>
-         <lastmod>2025-08-20</lastmod>
+         <lastmod>2025-08-21</lastmod>
     </url>
     <url>
          <loc>https://annie-docs.netlify.app/tutorials/10-gpu-usage/</loc>
-         <lastmod>2025-08-20</lastmod>
+         <lastmod>2025-08-21</lastmod>
     </url>
     <url>
          <loc>https://annie-docs.netlify.app/tutorials/11-performance/</loc>
-         <lastmod>2025-08-20</lastmod>
+         <lastmod>2025-08-21</lastmod>
     </url>
     <url>
          <loc>https://annie-docs.netlify.app/tutorials/usecase-image-search/</loc>
-         <lastmod>2025-08-20</lastmod>
+         <lastmod>2025-08-21</lastmod>
     </url>
     <url>
          <loc>https://annie-docs.netlify.app/tutorials/usecase-recommendation/</loc>
-         <lastmod>2025-08-20</lastmod>
+         <lastmod>2025-08-21</lastmod>
     </url>
 </urlset>
