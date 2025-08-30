@@ -37,7 +37,7 @@ jobs:
           du -sh site/ > site-size.txt
 
       - name: Check all Markdown links (internal & external)
-        uses: lycheeverse/lychee-action@v1.10.0
+        uses: lycheeverse/lychee-action@v2.0.2
         with:
           args: --verbose --no-progress --exclude-mail --require-https --timeout 15 --max-concurrency 10 '**/*.md' 'site/**/*.html'
         env:
