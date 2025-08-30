@@ -7,7 +7,6 @@ Extracts docstrings and converts them to markdown documentation.
 import ast
 from pathlib import Path
 
-import sys
 
 
 def extract_docstring(node):
