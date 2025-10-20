@@ -3,10 +3,8 @@ Sync API documentation from the Annie repository.
 Extracts docstrings and converts them to markdown documentation.
 """
 
-
 import ast
 from pathlib import Path
-
 
 
 def extract_docstring(node):
@@ -33,28 +31,32 @@ def parse_python_file(file_path):
             if isinstance(node, ast.ClassDef):
                 docstring = extract_docstring(node)
                 if docstring:
-                    docs.append({
-                        "type": "class",
-                        "name": node.name,
-                        "docstring": docstring,
-                        "methods": []
-                    })
+                    docs.append(
+                        {
+                            "type": "class",
+                            "name": node.name,
+                            "docstring": docstring,
+                            "methods": [],
+                        }
+                    )
                     # Extract methods
                     for item in node.body:
                         if isinstance(item, ast.FunctionDef):
                             method_doc = extract_docstring(item)
                             if method_doc:
-                                docs[-1]["methods"].append({
-                                    "name": item.name,
-                                    "docstring": method_doc,
-                                    "signature": None,  # TODO: add signature extraction
-                                    "params": [],        # TODO: add param extraction
-                                    "returns": None,     # TODO: add return type
-                                    "errors": [],        # TODO: add error info
-                                    "since": None,       # TODO: add since version
-                                    "examples": [],      # TODO: add examples
-                                    "see_also": [],      # TODO: add cross-references
-                                })
+                                docs[-1]["methods"].append(
+                                    {
+                                        "name": item.name,
+                                        "docstring": method_doc,
+                                        "signature": None,  # TODO: add signature extraction
+                                        "params": [],  # TODO: add param extraction
+                                        "returns": None,  # TODO: add return type
+                                        "errors": [],  # TODO: add error info
+                                        "since": None,  # TODO: add since version
+                                        "examples": [],  # TODO: add examples
+                                        "see_also": [],  # TODO: add cross-references
+                                    }
+                                )
         return docs
     except Exception as e:
         print(f"Error parsing {file_path}: {e}")
@@ -93,21 +95,30 @@ def convert_to_markdown(docs, class_name, placeholder=False):
                     for ex in method["examples"]:
                         md_content += f"```python\n{ex}\n```\n\n"
                 if method.get("see_also"):
-                    md_content += "**See also:** " + ", ".join(f"`{s}`" for s in method["see_also"]) + "\n\n"
+                    md_content += (
+                        "**See also:** "
+                        + ", ".join(f"`{s}`" for s in method["see_also"])
+                        + "\n\n"
+                    )
     return md_content
 
 
 def main():
     """Main sync function."""
     import argparse
+
     parser = argparse.ArgumentParser(description="Sync API docs from source.")
     parser.add_argument(
-        "--source", type=str, default="annie-source",
-        help="Path to API source directory (Python or Rust stubs)"
+        "--source",
+        type=str,
+        default="annie-source",
+        help="Path to API source directory (Python or Rust stubs)",
     )
     parser.add_argument(
-        "--api-dir", type=str, default="docs/api",
-        help="Path to output API docs directory"
+        "--api-dir",
+        type=str,
+        default="docs/api",
+        help="Path to output API docs directory",
     )
     args = parser.parse_args()
 
