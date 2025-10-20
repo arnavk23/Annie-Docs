@@ -1606,8 +1606,8 @@ print(&quot;Filtered search results:&quot;, results)
 <h3 id="new-feature-filtered-search-with-custom-python-callbacks">New Feature: Filtered Search with Custom Python Callbacks<a class="headerlink" href="#new-feature-filtered-search-with-custom-python-callbacks" title="Permanent link">&para;</a></h3>
 <p>The library now supports filtered search using custom Python callbacks, allowing for more complex filtering logic directly in Python.</p>
 <h4 id="example-filtered-search-with-python-callback">Example: Filtered Search with Python Callback<a class="headerlink" href="#example-filtered-search-with-python-callback" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">rust_annie</span> <span class="kn">import</span> <span class="n">AnnIndex</span><span class="p">,</span> <span class="n">Distance</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rust_annie</span><span class="w"> </span><span class="kn">import</span> <span class="n">AnnIndex</span><span class="p">,</span> <span class="n">Distance</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="c1"># Create index</span>
 <span class="n">index</span> <span class="o">=</span> <span class="n">AnnIndex</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">Distance</span><span class="o">.</span><span class="n">EUCLIDEAN</span><span class="p">)</span>
@@ -1620,7 +1620,7 @@ print(&quot;Filtered search results:&quot;, results)
 <span class="n">index</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">ids</span><span class="p">)</span>
 
 <span class="c1"># Filter function</span>
-<span class="k">def</span> <span class="nf">even_ids</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">even_ids</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
     <span class="k">return</span> <span class="nb">id</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span>
 
 <span class="c1"># Filtered search</span>
@@ -1637,11 +1637,11 @@ print(&quot;Filtered search results:&quot;, results)
 <h3 id="benchmarking-indices">Benchmarking Indices<a class="headerlink" href="#benchmarking-indices" title="Permanent link">&para;</a></h3>
 <p>The library now includes a benchmarking function to evaluate the performance of different index types, specifically <code>PyHnswIndex</code> and <code>AnnIndex</code>. This function measures the average, maximum, and minimum query times, providing insights into the efficiency of each index type.</p>
 <h4 id="example-benchmarking-script">Example: Benchmarking Script<a class="headerlink" href="#example-benchmarking-script" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">from</span> <span class="nn">rust_annie</span> <span class="kn">import</span> <span class="n">PyHnswIndex</span><span class="p">,</span> <span class="n">AnnIndex</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rust_annie</span><span class="w"> </span><span class="kn">import</span> <span class="n">PyHnswIndex</span><span class="p">,</span> <span class="n">AnnIndex</span>
 
-<span class="k">def</span> <span class="nf">benchmark</span><span class="p">(</span><span class="n">index_cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">10_000</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">benchmark</span><span class="p">(</span><span class="n">index_cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">10_000</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Benchmarking </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> with </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> vectors (dim=</span><span class="si">{</span><span class="n">dim</span><span class="si">}</span><span class="s2">)...&quot;</span><span class="p">)</span>
 
     <span class="c1"># Data</span>

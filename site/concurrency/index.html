@@ -1481,9 +1481,9 @@
 <li><code>PyHnswIndex</code> supports mapping internal IDs to user IDs and handling vector data efficiently</li>
 </ul>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">annie</span> <span class="kn">import</span> <span class="n">ThreadSafeAnnIndex</span><span class="p">,</span> <span class="n">Distance</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">threading</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">annie</span><span class="w"> </span><span class="kn">import</span> <span class="n">ThreadSafeAnnIndex</span><span class="p">,</span> <span class="n">Distance</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">threading</span>
 
 <span class="c1"># Create index</span>
 <span class="n">index</span> <span class="o">=</span> <span class="n">ThreadSafeAnnIndex</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="n">Distance</span><span class="o">.</span><span class="n">Cosine</span><span class="p">)</span>
@@ -1494,7 +1494,7 @@
 <span class="n">index</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">ids</span><span class="p">)</span>
 
 <span class="c1"># Run concurrent searches</span>
-<span class="k">def</span> <span class="nf">run_search</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">run_search</span><span class="p">():</span>
     <span class="n">query</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span>
     <span class="n">ids</span><span class="p">,</span> <span class="n">distances</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">ids</span><span class="p">)</span>
@@ -1504,7 +1504,7 @@
 <span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">join</span><span class="p">()</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">]</span>
 
 <span class="c1"># Using PyHnswIndex</span>
-<span class="kn">from</span> <span class="nn">rust_annie</span> <span class="kn">import</span> <span class="n">PyHnswIndex</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rust_annie</span><span class="w"> </span><span class="kn">import</span> <span class="n">PyHnswIndex</span>
 
 <span class="c1"># Create HNSW index</span>
 <span class="n">hnsw_index</span> <span class="o">=</span> <span class="n">PyHnswIndex</span><span class="p">(</span><span class="n">dims</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>
@@ -1584,8 +1584,8 @@
 <h3 id="static-loadpath-str-annindex"><code>static load(path: str) -&gt; AnnIndex</code><a class="headerlink" href="#static-loadpath-str-annindex" title="Permanent link">&para;</a></h3>
 <p>Load index from disk.</p>
 <h2 id="example_1">Example<a class="headerlink" href="#example_1" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">rust_annie</span> <span class="kn">import</span> <span class="n">AnnIndex</span><span class="p">,</span> <span class="n">Distance</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rust_annie</span><span class="w"> </span><span class="kn">import</span> <span class="n">AnnIndex</span><span class="p">,</span> <span class="n">Distance</span>
 
 <span class="c1"># Create index</span>
 <span class="n">index</span> <span class="o">=</span> <span class="n">AnnIndex</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="n">Distance</span><span class="o">.</span><span class="n">EUCLIDEAN</span><span class="p">)</span>
@@ -1626,8 +1626,8 @@
 <h3 id="static-loadpath-str-pyhnswindex"><code>static load(path: str) -&gt; PyHnswIndex</code><a class="headerlink" href="#static-loadpath-str-pyhnswindex" title="Permanent link">&para;</a></h3>
 <p>Load index from disk (currently not implemented)</p>
 <h2 id="example_2">Example<a class="headerlink" href="#example_2" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">rust_annie</span> <span class="kn">import</span> <span class="n">PyHnswIndex</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rust_annie</span><span class="w"> </span><span class="kn">import</span> <span class="n">PyHnswIndex</span>
 
 <span class="c1"># Create index</span>
 <span class="n">index</span> <span class="o">=</span> <span class="n">PyHnswIndex</span><span class="p">(</span><span class="n">dims</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>
@@ -1664,9 +1664,9 @@
 <h3 id="static-loadpath-str-threadsafeannindex"><code>static load(path: str) -&gt; ThreadSafeAnnIndex</code><a class="headerlink" href="#static-loadpath-str-threadsafeannindex" title="Permanent link">&para;</a></h3>
 <p>Thread-safe load.</p>
 <h2 id="example_3">Example<a class="headerlink" href="#example_3" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">rust_annie</span> <span class="kn">import</span> <span class="n">ThreadSafeAnnIndex</span><span class="p">,</span> <span class="n">Distance</span>
-<span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ThreadPoolExecutor</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rust_annie</span><span class="w"> </span><span class="kn">import</span> <span class="n">ThreadSafeAnnIndex</span><span class="p">,</span> <span class="n">Distance</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ThreadPoolExecutor</span>
 
 <span class="c1"># Create index</span>
 <span class="n">index</span> <span class="o">=</span> <span class="n">ThreadSafeAnnIndex</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="n">Distance</span><span class="o">.</span><span class="n">COSINE</span><span class="p">)</span>
@@ -1690,8 +1690,8 @@
 </code></pre></div>
 <h1 id="annie-examples">Annie Examples<a class="headerlink" href="#annie-examples" title="Permanent link">&para;</a></h1>
 <h2 id="basic-usage">Basic Usage<a class="headerlink" href="#basic-usage" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">rust_annie</span> <span class="kn">import</span> <span class="n">AnnIndex</span><span class="p">,</span> <span class="n">Distance</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rust_annie</span><span class="w"> </span><span class="kn">import</span> <span class="n">AnnIndex</span><span class="p">,</span> <span class="n">Distance</span>
 
 <span class="c1"># Create index</span>
 <span class="n">index</span> <span class="o">=</span> <span class="n">AnnIndex</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="n">Distance</span><span class="o">.</span><span class="n">EUCLIDEAN</span><span class="p">)</span>
@@ -1721,7 +1721,7 @@
 <span class="n">index</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">ids</span><span class="p">)</span>
 
 <span class="c1"># Define filter function</span>
-<span class="k">def</span> <span class="nf">even_ids</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">even_ids</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
     <span class="k">return</span> <span class="nb">id</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span>
 
 <span class="c1"># Filtered search</span>
@@ -1730,7 +1730,7 @@
 <span class="c1"># Only IDs 10 and 30 will be returned (20 is odd)</span>
 </code></pre></div>
 <h2 id="hnsw-index">HNSW Index<a class="headerlink" href="#hnsw-index" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">rust_annie</span> <span class="kn">import</span> <span class="n">PyHnswIndex</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rust_annie</span><span class="w"> </span><span class="kn">import</span> <span class="n">PyHnswIndex</span>
 
 <span class="c1"># Create HNSW index</span>
 <span class="n">index</span> <span class="o">=</span> <span class="n">PyHnswIndex</span><span class="p">(</span><span class="n">dims</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>
@@ -1756,8 +1756,8 @@
 <span class="n">loaded_index</span> <span class="o">=</span> <span class="n">AnnIndex</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;my_index&quot;</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="thread-safe-operations">Thread-safe Operations<a class="headerlink" href="#thread-safe-operations" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">rust_annie</span> <span class="kn">import</span> <span class="n">ThreadSafeAnnIndex</span><span class="p">,</span> <span class="n">Distance</span>
-<span class="kn">from</span> <span class="nn">concurrent.futures</span> <span class="kn">import</span> <span class="n">ThreadPoolExecutor</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rust_annie</span><span class="w"> </span><span class="kn">import</span> <span class="n">ThreadSafeAnnIndex</span><span class="p">,</span> <span class="n">Distance</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ThreadPoolExecutor</span>
 
 <span class="n">index</span> <span class="o">=</span> <span class="n">ThreadSafeAnnIndex</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="n">Distance</span><span class="o">.</span><span class="n">MANHATTAN</span><span class="p">)</span>
 
@@ -1796,8 +1796,8 @@
 - Custom user-defined logic</p>
 <p>This improves both precision and flexibility of search.</p>
 <h3 id="example-python-api">Example: Python API<a class="headerlink" href="#example-python-api" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">rust_annie</span> <span class="kn">import</span> <span class="n">AnnIndex</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rust_annie</span><span class="w"> </span><span class="kn">import</span> <span class="n">AnnIndex</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="c1"># 1. Create an index with vector dimension 128</span>
 <span class="n">index</span> <span class="o">=</span> <span class="n">AnnIndex</span><span class="p">(</span><span class="n">dimension</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>
@@ -1810,7 +1810,7 @@
 <span class="n">index</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">vector1</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;category&quot;</span><span class="p">:</span> <span class="s2">&quot;B&quot;</span><span class="p">})</span>
 
 <span class="c1"># 3. Define a filter function (e.g., only include items where category == &quot;A&quot;)</span>
-<span class="k">def</span> <span class="nf">category_filter</span><span class="p">(</span><span class="n">metadata</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">category_filter</span><span class="p">(</span><span class="n">metadata</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;A&quot;</span>
 
 <span class="c1"># 4. Perform search with the filter applied</span>
@@ -1853,11 +1853,11 @@
 <h2 id="benchmarking-indices">Benchmarking Indices<a class="headerlink" href="#benchmarking-indices" title="Permanent link">&para;</a></h2>
 <p>The library now includes a benchmarking function to evaluate the performance of different index types, specifically <code>PyHnswIndex</code> and <code>AnnIndex</code>. This function measures the average, maximum, and minimum query times, providing insights into the efficiency of each index type.</p>
 <h3 id="example-benchmarking-script">Example: Benchmarking Script<a class="headerlink" href="#example-benchmarking-script" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">from</span> <span class="nn">rust_annie</span> <span class="kn">import</span> <span class="n">PyHnswIndex</span><span class="p">,</span> <span class="n">AnnIndex</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rust_annie</span><span class="w"> </span><span class="kn">import</span> <span class="n">PyHnswIndex</span><span class="p">,</span> <span class="n">AnnIndex</span>
 
-<span class="k">def</span> <span class="nf">benchmark</span><span class="p">(</span><span class="n">index_cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">10_000</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">benchmark</span><span class="p">(</span><span class="n">index_cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">10_000</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Benchmarking </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> with </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> vectors (dim=</span><span class="si">{</span><span class="n">dim</span><span class="si">}</span><span class="s2">)...&quot;</span><span class="p">)</span>
 
     <span class="c1"># Data</span>
@@ -1899,8 +1899,8 @@
 <div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>rust_annie
 </code></pre></div>
 <h2 id="basic-usage_1">Basic Usage<a class="headerlink" href="#basic-usage_1" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">rust_annie</span> <span class="kn">import</span> <span class="n">AnnIndex</span><span class="p">,</span> <span class="n">Distance</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rust_annie</span><span class="w"> </span><span class="kn">import</span> <span class="n">AnnIndex</span><span class="p">,</span> <span class="n">Distance</span>
 
 <span class="c1"># Create index</span>
 <span class="n">index</span> <span class="o">=</span> <span class="n">AnnIndex</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="n">Distance</span><span class="o">.</span><span class="n">EUCLIDEAN</span><span class="p">)</span>
