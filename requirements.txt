@@ -4,13 +4,13 @@
 #
 #    pip-compile requirements.in
 #
-click==8.3.0
+click==8.3.1
     # via mkdocs
 ghp-import==2.1.0
     # via mkdocs
 jinja2==3.1.6
     # via mkdocs
-markdown==3.9
+markdown==3.10
     # via mkdocs
 markupsafe==3.0.3
     # via
@@ -28,7 +28,7 @@ packaging==25.0
     # via mkdocs
 pathspec==0.12.1
     # via mkdocs
-platformdirs==4.4.0
+platformdirs==4.5.0
     # via mkdocs-get-deps
 python-dateutil==2.9.0.post0
     # via ghp-import
