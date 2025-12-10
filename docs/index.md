@@ -367,6 +367,7 @@ Blazingly fast Approximate Nearest Neighbors in Rust
 
 
 
+
 ```bash
 # Stable release from PyPI:
 pip install rust-annie
@@ -382,6 +383,7 @@ maturin develop --release
 ```
 
 ## Basic Usage
+
 
 
 
@@ -766,6 +768,7 @@ neighbor_ids, distances = index.search(query, k=5)
 ```
 
 ## Key Features
+
 
 
 
