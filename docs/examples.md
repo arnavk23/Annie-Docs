@@ -506,3 +506,4 @@ This project is licensed under the **MIT License**. See [LICENSE](./LICENSE) for
 ### Single-Query Overhead
 
 For small queries, Python function call overhead dominates. Use `.search_batch()` for multiple vectors.
+
