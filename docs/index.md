@@ -393,18 +393,15 @@ Blazingly fast Approximate Nearest Neighbors in Rust
 
 
 
+
+### From PyPI (Recommended)
+
 ```bash
-# Stable release from PyPI:
+# Stable release
 pip install rust-annie
 
-# Install with GPU support (requires CUDA):
+# With GPU support (requires CUDA Toolkit)
 pip install rust-annie[gpu]
-
-# Or install from source:
-git clone https://github.com/Programmers-Paradise/Annie.git
-cd Annie
-pip install maturin
-maturin develop --release
 ```
 
 ## Basic Usage
@@ -799,7 +796,9 @@ maturin develop --release
 
 
 
-### Brute-Force Index
+
+### Brute-Force Index (Exact Search)
+
 ```python
 import numpy as np
 from rust_annie import AnnIndex, Distance
@@ -815,6 +814,8 @@ index.add(data, ids)
 # Search
 query = np.random.rand(128).astype(np.float32)
 neighbor_ids, distances = index.search(query, k=5)
+print(f"Top 5 neighbors: {neighbor_ids}")
+print(f"Distances: {distances}")
 ```
 
 ## Key Features
@@ -1209,18 +1210,19 @@ neighbor_ids, distances = index.search(query, k=5)
 
 
 
+
 - **Multiple Backends**:
-  - **Brute-force** (exact) with SIMD acceleration
-  - **HNSW** (approximate) for large-scale datasets
+  - **Brute-force** (exact) with SIMD acceleration for guaranteed accuracy
+  - **HNSW** (approximate) for large-scale datasets with near-constant memory
 - **Multiple Distance Metrics**: Euclidean, Cosine, Manhattan, Chebyshev
-- **Batch Queries** for efficient processing
-- **Thread-safe** indexes with concurrent access
-- **Zero-copy** NumPy integration
-- **On-disk Persistence** with serialization
-- **Filtered Search** with custom Python callbacks
-- **GPU Acceleration** for brute-force calculations
+- **Batch Queries** for efficient processing of multiple vectors
+- **Thread-safe** indexes with concurrent access patterns
+- **Zero-copy** NumPy integration for minimal memory overhead
+- **On-disk Persistence** with serialization/deserialization
+- **Filtered Search** with custom Python callbacks and metadata
+- **GPU Acceleration** for brute-force calculations on NVIDIA GPUs
 - **Multi-platform** support (Linux, Windows, macOS)
-- **Automated CI** with performance tracking
+- **Automated CI/CD** with benchmarking and performance tracking
 
 ## Navigation
 

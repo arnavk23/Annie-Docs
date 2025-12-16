@@ -514,6 +514,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#from-pypi-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        From PyPI (Recommended)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -529,10 +546,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#brute-force-index" class="md-nav__link">
+  <a href="#brute-force-index-exact-search" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Brute-Force Index
+        Brute-Force Index (Exact Search)
       
     </span>
   </a>
@@ -1719,20 +1736,15 @@
 <h1 id="annieio">Annie.io<a class="headerlink" href="#annieio" title="Permanent link">&para;</a></h1>
 <p>Blazingly fast Approximate Nearest Neighbors in Rust</p>
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="c1"># Stable release from PyPI:</span>
+<h3 id="from-pypi-recommended">From PyPI (Recommended)<a class="headerlink" href="#from-pypi-recommended" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Stable release</span>
 pip<span class="w"> </span>install<span class="w"> </span>rust-annie
 
-<span class="c1"># Install with GPU support (requires CUDA):</span>
+<span class="c1"># With GPU support (requires CUDA Toolkit)</span>
 pip<span class="w"> </span>install<span class="w"> </span>rust-annie<span class="o">[</span>gpu<span class="o">]</span>
-
-<span class="c1"># Or install from source:</span>
-git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Programmers-Paradise/Annie.git
-<span class="nb">cd</span><span class="w"> </span>Annie
-pip<span class="w"> </span>install<span class="w"> </span>maturin
-maturin<span class="w"> </span>develop<span class="w"> </span>--release
 </code></pre></div>
 <h2 id="basic-usage">Basic Usage<a class="headerlink" href="#basic-usage" title="Permanent link">&para;</a></h2>
-<h3 id="brute-force-index">Brute-Force Index<a class="headerlink" href="#brute-force-index" title="Permanent link">&para;</a></h3>
+<h3 id="brute-force-index-exact-search">Brute-Force Index (Exact Search)<a class="headerlink" href="#brute-force-index-exact-search" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">rust_annie</span><span class="w"> </span><span class="kn">import</span> <span class="n">AnnIndex</span><span class="p">,</span> <span class="n">Distance</span>
 
@@ -1747,21 +1759,23 @@ maturin<span class="w"> </span>develop<span class="w"> </span>--release
 <span class="c1"># Search</span>
 <span class="n">query</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
 <span class="n">neighbor_ids</span><span class="p">,</span> <span class="n">distances</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Top 5 neighbors: </span><span class="si">{</span><span class="n">neighbor_ids</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Distances: </span><span class="si">{</span><span class="n">distances</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Multiple Backends</strong>:</li>
-<li><strong>Brute-force</strong> (exact) with SIMD acceleration</li>
-<li><strong>HNSW</strong> (approximate) for large-scale datasets</li>
+<li><strong>Brute-force</strong> (exact) with SIMD acceleration for guaranteed accuracy</li>
+<li><strong>HNSW</strong> (approximate) for large-scale datasets with near-constant memory</li>
 <li><strong>Multiple Distance Metrics</strong>: Euclidean, Cosine, Manhattan, Chebyshev</li>
-<li><strong>Batch Queries</strong> for efficient processing</li>
-<li><strong>Thread-safe</strong> indexes with concurrent access</li>
-<li><strong>Zero-copy</strong> NumPy integration</li>
-<li><strong>On-disk Persistence</strong> with serialization</li>
-<li><strong>Filtered Search</strong> with custom Python callbacks</li>
-<li><strong>GPU Acceleration</strong> for brute-force calculations</li>
+<li><strong>Batch Queries</strong> for efficient processing of multiple vectors</li>
+<li><strong>Thread-safe</strong> indexes with concurrent access patterns</li>
+<li><strong>Zero-copy</strong> NumPy integration for minimal memory overhead</li>
+<li><strong>On-disk Persistence</strong> with serialization/deserialization</li>
+<li><strong>Filtered Search</strong> with custom Python callbacks and metadata</li>
+<li><strong>GPU Acceleration</strong> for brute-force calculations on NVIDIA GPUs</li>
 <li><strong>Multi-platform</strong> support (Linux, Windows, macOS)</li>
-<li><strong>Automated CI</strong> with performance tracking</li>
+<li><strong>Automated CI/CD</strong> with benchmarking and performance tracking</li>
 </ul>
 <h2 id="navigation">Navigation<a class="headerlink" href="#navigation" title="Permanent link">&para;</a></h2>
 <ul>

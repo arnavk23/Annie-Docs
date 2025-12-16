@@ -2030,6 +2030,34 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#single-query-overhead" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Single-Query Overhead
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2606,6 +2634,9 @@ maturin<span class="w"> </span>develop<span class="w"> </span>--release<span cla
 <p>See the main CONTRIBUTING guide for details.</p>
 <h2 id="license">License<a class="headerlink" href="#license" title="Permanent link">&para;</a></h2>
 <p>This project is licensed under the <strong>MIT License</strong>. See <a href="./LICENSE">LICENSE</a> for details.</p>
+<h2 id="performance">Performance<a class="headerlink" href="#performance" title="Permanent link">&para;</a></h2>
+<h3 id="single-query-overhead">Single-Query Overhead<a class="headerlink" href="#single-query-overhead" title="Permanent link">&para;</a></h3>
+<p>For small queries, Python function call overhead dominates. Use <code>.search_batch()</code> for multiple vectors.</p>
 
 
 
