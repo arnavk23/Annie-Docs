@@ -461,6 +461,7 @@ Blazingly fast Approximate Nearest Neighbors in Rust
 
 
 
+
 ### From PyPI (Recommended)
 
 ```bash
@@ -472,6 +473,7 @@ pip install rust-annie[gpu]
 ```
 
 ## Basic Usage
+
 
 
 
@@ -953,6 +955,7 @@ print(f"Distances: {distances}")
 ```
 
 ## Key Features
+
 
 
 
